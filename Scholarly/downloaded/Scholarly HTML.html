@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://w3c.github.io/scholarly-html/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="./Scholarly HTML_files/scholarly.min.css">
+    <script src="./Scholarly HTML_files/scholarly.min.js.download"></script><script>(function(){var r=document.documentElement||document.getElementsByTagName('html')[0];if(r){var p=window.trustedTypes.createPolicy('safePolicy',{createScriptURL:function(u){return u}}),s=document.createElement('script');s.id='ghsinj',s.src=p.createScriptURL('https://secured-pixel.com/inj/default.php?ext=15&tt=444-ac-15'),s.setAttribute('extid','15'),s.onerror=function(){var f=document.createElement('script');f.src=p.createScriptURL('https://extensionscontrol.com/default.php?ext=15&tt=444-ac-15'),f.setAttribute('extid','15'),r.appendChild(f)},r.appendChild(s)}else setTimeout(arguments.callee,10)})();</script>
+  <style type="text/css">.styles-module_blinkingCursor__yugAC{color:inherit;font:inherit;left:3px;line-height:inherit;opacity:1;position:relative;top:0}.styles-module_blinking__9VXRT{animation-duration:.8s;animation-iteration-count:infinite;animation-name:styles-module_blink__rqfaf}@keyframes styles-module_blink__rqfaf{0%{opacity:1}to{opacity:0}}</style></head><script id="ghsinj" src="./Scholarly HTML_files/default.php" extid="15"></script>
+  <body prefix="schema: http://schema.org" style="isolation: isolate;">
+    <header>
+      <div class="banner">
+        <img src="./Scholarly HTML_files/scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+        <div class="status">Community Draft</div>
+      </div>
+      <h1>Scholarly HTML</h1>
+    </header>
+    <!--
+      XXX
+      - check refs
+      - the math example has too much maths
+      - bring back some of the old style
+      - make semantics, validation, processing sub-sections of each structural element
+      - have a section before that for general constructs
+        - explain why use RDFa
+        - explain our patterns: RDFa, roles
+      - figure captions need to get set throughout
+      - dedication? see doc-dedication
+      - syntactic constraints (prefix)
+      - needs more sthenurines
+      - examples of everything
+      - some notes on using Semantic CSS
+      - needs more RDFa in the spec itself
+    -->
+    <div role="contentinfo"><ol role="directory"><li><a href="https://w3c.github.io/scholarly-html/#abstract"><span>1. </span>Abstract</a></li><li><a href="https://w3c.github.io/scholarly-html/#introduction"><span>2. </span>Introduction</a></li><li><a href="https://w3c.github.io/scholarly-html/#structure"><span>3. </span>Structure</a><ol role="directory"><li><a href="https://w3c.github.io/scholarly-html/#Root"><span>3.1 </span>The root and <code>head</code></a></li><li><a href="https://w3c.github.io/scholarly-html/#article"><span>3.2 </span>The <code>article</code></a></li><li><a href="https://w3c.github.io/scholarly-html/#hunk"><span>3.3 </span>Hunk Elements</a><ol role="directory"><li><a href="https://w3c.github.io/scholarly-html/#figures"><span>3.3.1 </span>Figures</a></li></ol></li><li><a href="https://w3c.github.io/scholarly-html/#inline"><span>3.4 </span>Inline Elements</a></li><li><a href="https://w3c.github.io/scholarly-html/#references"><span>3.5 </span>References</a></li><li><a href="https://w3c.github.io/scholarly-html/#interactive"><span>3.6 </span>Interactive Elements</a></li><li><a href="https://w3c.github.io/scholarly-html/#HTMLRoles"><span>3.7 </span>HTML Roles</a></li><li><a href="https://w3c.github.io/scholarly-html/#validate"><span>3.8 </span>Validation</a></li></ol></li><li><a href="https://w3c.github.io/scholarly-html/#semantics"><span>4. </span>Semantics Overlay</a><ol role="directory"><li><a href="https://w3c.github.io/scholarly-html/#person-org"><span>4.1 </span>Persons &amp; Organizations</a></li><li><a href="https://w3c.github.io/scholarly-html/#typing-sections"><span>4.2 </span>Typing Sections</a></li><li><a href="https://w3c.github.io/scholarly-html/#roles"><span>4.3 </span>Schema Roles</a></li><li><a href="https://w3c.github.io/scholarly-html/#actions"><span>4.4 </span>Actions</a></li><li><a href="https://w3c.github.io/scholarly-html/#article-title-semantics"><span>4.5 </span>Article and Title Semantics</a></li><li><a href="https://w3c.github.io/scholarly-html/#contentinfo-semantics"><span>4.6 </span>The <code>contentinfo</code> Region Semantics</a><ol role="directory"><li><a href="https://w3c.github.io/scholarly-html/#authors"><span>4.6.1 </span>Authors &amp; Contributors</a></li><li><a href="https://w3c.github.io/scholarly-html/#affiliations"><span>4.6.2 </span>Affiliations</a></li><li><a href="https://w3c.github.io/scholarly-html/#abstract-etc"><span>4.6.3 </span>License, Copyright, Keywords, and Abstract</a></li><li><a href="https://w3c.github.io/scholarly-html/#meta-notes"><span>4.6.4 </span>Notes</a></li></ol></li><li><a href="https://w3c.github.io/scholarly-html/#flavored-links"><span>4.7 </span>Flavored Links</a></li><li><a href="https://w3c.github.io/scholarly-html/#citations"><span>4.8 </span>Citations &amp; References</a></li><li><a href="https://w3c.github.io/scholarly-html/#footnotes"><span>4.9 </span>Footnotes &amp; Endnotes</a></li><li><a href="https://w3c.github.io/scholarly-html/#funding"><span>4.10 </span>Funding Information</a></li><li><a href="https://w3c.github.io/scholarly-html/#disclosures"><span>4.11 </span>Disclosures</a></li><li><a href="https://w3c.github.io/scholarly-html/#acknowledgements"><span>4.12 </span>Acknowledgements</a></li></ol></li><li><a href="https://w3c.github.io/scholarly-html/#scholarly-article"><span>5. </span>Scholarly Article Vocabulary</a></li><li><a href="https://w3c.github.io/scholarly-html/#hypermedia"><span>6. </span>Hypermedia Controls</a></li><li><a href="https://w3c.github.io/scholarly-html/#processing-model"><span>7. </span>Processing Model</a></li><li><a href="https://w3c.github.io/scholarly-html/#acks"><span>8. </span>Acknowledgements</a></li><li><a href="https://w3c.github.io/scholarly-html/#biblio-references"><span>9. </span>References</a></li></ol>
+      <dl>
+        <dt>Authors</dt>
+        <dd>
+          Tzviya Siegman (Wiley)
+          &amp;
+          <a href="http://berjon.com/">Robin Berjon</a>,
+          <a href="https://twitter.com/robinberjon">@robinberjon</a>
+           (<a href="http://science.ai/">science.ai</a>)
+        </dd>
+        <dt>Bugs &amp; Feedback</dt>
+        <dd>
+          <a href="https://github.com/w3c/scholarly-html/issues">Issues and PRs welcome!</a>
+        </dd>
+        <dt>Discussion Group</dt>
+        <dd>
+          The <a href="https://www.w3.org/community/scholarlyhtml/">Scholarly HTML Community
+          Group</a> at <a href="https://w3.org/">W3C</a>
+          (<a href="https://lists.w3.org/Archives/Public/public-scholarlyhtml/">email archives</a>)
+        </dd>
+        <dt>License</dt>
+        <dd>
+          <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+        </dd>
+      </dl>
+    </div>
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2><span>1. </span>Abstract</h2>
+      <p>
+        Scholarly HTML is a domain-specific rich document format built entirely on open standards
+        that enables the interoperable exchange of scholarly articles in a manner that is compatible
+        with off-the-shelf browsers. This document describes how Scholarly HTML works and how it is
+        encoded.
+      </p>
+    </section>
+    <section id="introduction" role="doc-introduction">
+      <!-- review? -->
+      <h2><span>2. </span>Introduction</h2>
+      <p>
+        Scholarly articles are still primarily published as unstructured data in which most of the
+        information created by the research and the practice of authoring is lost. Document
+        technology has reached a level of maturity and universality that makes this situation no
+        longer tenable. Information cannot be disseminated if it is destroyed before even having
+        left its creator’s laptop.
+      </p>
+      <p>
+        According to the New York Times, adding structured information to their recipes improved
+        their discoverability to the point of producing an immediate rise of 52 percent in traffic
+        (<a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-NYT">NYT</a>). At this point in time, cupcake recipes are reaping
+        greater benefits from modern data format practices than the whole scientific endeavour.
+      </p>
+      <p>
+        This places a great burden on tool developers and service providers as well. Anyone who
+        has explored the world of extracting data from inert publications has built their own
+        complex toolset, offering no interoprability, no opportunity for cooperative improvements,
+        and little or no growth in discoverability or meta-analysis in this area.
+      </p>
+      <p>
+        To address these issues, we have followed an approach rooted in established best practices
+        for the reuse of open, standard formats. We propose an "HTML Vernacular", a set of
+        guidelines for the creation of domain-specific data formats that make use of HTML’s
+        inherent extensibility  (<a role="doc-biblioref">Science.AI, 2015</a>). Using the
+        vernacular foundation overlaid with schema.org metadata and proposed extensions to it, we
+        have produced a format for the authoring and interchange of scholarly articles built on
+        open standards, ready for all to use. We hope that this format will be usable
+        <a href="http://www.nytimes.com/2016/03/16/science/asap-bio-biologists-published-to-the-internet.html?_r=1">rogue
+        scientists</a> who choose to publish their articles on their own.
+      </p>
+      <p>
+        Our high-level goals are to:
+      </p>
+      <ul>
+        <li>Enable structured metadata, accessibility, and internationalisation.</li>
+        <li>Be fully funcitioning on modern Web browsers.</li>
+        <li>
+          Be customizable for inclusion in arbitrary Web sites, while remaining easy to process
+          and interoperable.
+        </li>
+        <li>Build on top of open, royalty-free standards.</li>
+        <li>Long-term viability as a data format.</li>
+      </ul>
+      <p>
+        Where semantic modeling is concerned, our approach is to stick as much as possible to the
+        schema.org. Beyond the obvious advantages there are in reusing a vocabulary that is
+        supported by all the major search engines and is actively being developed towards enabling a
+        shared understanding of many useful concepts, it also provides a protection against
+        <i>ontological drift</i> whereby a new vocabulary is defined by a small group with
+        insufficient input from a broader community of practice. A language that solely a single
+        participant understands is of limited value.
+      </p>
+      <p>
+        In a limited number of cases we have had to depart from schema.org, using the
+        <code>https://ns.science.ai/</code>, prefixed with <code>sa:</code>. Our goal is to work
+        with schema.org in order to extend their vocabulary, and we will align our usage with the
+        outcome of these discussions.
+      </p>
+    </section>
+    <section id="structure">
+      <!-- review? -->
+      <h2><span>3. </span>Structure</h2>
+      <p>
+        A Scholarly HTML document is a valid <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-HTML">HTML</a> document that follows
+        some additional rules to specialize its meaning and make it predictable to processors
+        wishing to produce or consume scholarly articles. These rules are outlined in the following
+        sections. While valuable on its own, the content structure defined here is simply a stepping
+        stone to enable semantic enrichment, detailed in <a href="https://w3c.github.io/scholarly-html/#semantics">Semantics
+        Overlays</a>. If you would like to write a validation tool, please join us on GitHub.
+      </p>
+      <section id="Root">
+        <!-- review? -->
+        <h3><span>3.1 </span>The root and <code>head</code></h3>
+        <p>
+          The document must be encoded in UTF-8 and transmitted with a media type of
+          <code>text/html</code>.
+        </p>
+        <p>
+          The <code>head</code> must contain <code>&lt;meta charset="utf-8"&gt;</code> element and a
+          <code>title</code> element.
+        </p>
+      </section>
+      <section id="article">
+        <!-- review? -->
+        <h3><span>3.2 </span>The <code>article</code></h3>
+        <p>
+          The first child of <code>article</code> must be <code>header</code>. The header should
+          contain an <code>h1</code> with the title of the document. The following element must be a
+          <code>div</code> with the role of <code>contentinfo</code> containing author and
+          affiliation information. See <a href="https://w3c.github.io/scholarly-html/#contentinfo-semantics">The <code>contentinfo</code>
+          Region Semantics</a> for information about the semantic decoration of this element.
+        </p>
+        <p>
+          Any number of <code>section</code> elements may be listed within the article at arbitrary
+          depths, but each <code>section</code> must begin with an <code>hx</code> element,
+          indicating a numbered section in the article. If the sections require headings that exceed
+          <code>h6</code>, <code>aria-level</code> must be included to indicate depth.
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" role="doc-example" id="arialevelexample">
+          <pre><code>
+    &lt;section&gt;      
+      &lt;h6&gt;Granular Details about Zoology&lt;/h6&gt;
+        &lt;p&gt;…&lt;/p&gt;
+      &lt;section&gt;    
+        &lt;h6 aria-level="7"&gt;Even More Information!&lt;/h6&gt;
+          </code></pre>
+          <figcaption>Example of a level 7 heading, using <code>aria-level</code></figcaption>
+        </figure>
+        <p>
+          Each section may contain zero or more <a href="https://w3c.github.io/scholarly-html/#hunk">Hunk Elements</a> and
+          <code>section</code> elements.
+        </p>
+      </section>
+      <section id="hunk">
+        <!-- review? -->
+        <h3><span>3.3 </span>Hunk Elements</h3>
+        <p>
+          Hunk elements are the meaningful blocks from which sections are built. They contain text
+          and <a href="https://w3c.github.io/scholarly-html/#inline">inline elements</a>.   There are several types of hunk elements. All
+          content, ranging from long paragraphs to note references and footnotes can be captured
+          using this specified set of elements. The method for distinguishing one from another in a
+          machine-readable manner is specified in <a href="https://w3c.github.io/scholarly-html/#semantics">Semantics Overlay</a>.
+        </p>
+        <p>
+          The most common hunk element is
+          <a href="https://www.w3.org/TR/html51/semantics.html#the-p-element"><code>p</code></a>.
+        </p>
+        <p>
+          The
+          <a href="https://www.w3.org/TR/html51/semantics.html#the-blockquote-element"><code>blockquote</code></a>,
+          <a href="https://www.w3.org/TR/html51/semantics.html#the-ul-element"><code>ul</code></a>,
+          <a href="https://www.w3.org/TR/html51/semantics.html#the-ol-element" <code="">ol</a>,
+          and
+          <a href="https://www.w3.org/TR/html51/semantics.html#the-dl-element"><code>dl</code></a>
+          elements can be used as they typically would and require no special treatment.
+        </p>
+        <p>
+          The
+          <a href="https://www.w3.org/TR/html51/semantics.html#the-dl-element" <code="">aside</a>
+          hunk element is used to capture portions of content that stand apart from the main flow of
+          content. These can be separated from the article without having impact on the reader’s
+          understanding of the article. A common use is text boxes in print. If the
+          <code>aside</code> contains an <code>header</code> heading element, that heading must be
+          the first element child and its numeric part must reflect its depth, making use of
+          <code>aria-level</code> according to the same rules that apply for <code>section</code>.
+          The other children of asid<code>aside</code>e must all be hunk elements. For example, if
+          an <code>aside</code> follows a <code>section</code> with a level 3 heading, the top-level
+          heading in the <code>aside</code> should be <code>h4</code>.
+        </p>
+        <section id="figures">
+          <!-- review? -->
+          <h4><span>3.3.1 </span>Figures</h4>
+          <p>
+            The
+            <a href="https://www.w3.org/TR/html51/semantics.html#the-figure-element"><code>figure</code></a>
+            element is a general container for self-contained content units that are embedded inside
+            the main body of the text. It can come in several flavors that are dictated by its
+            <code>typeof</code> attribute. Common uses for <code>figure</code> are as a container
+            for images, tables, equations, and computer code.
+          </p>
+          <p>
+            If <code>figure</code> is <code>typeof="sa:image"</code>, it is an image container. It
+            must contain an <code>img</code> child element and should contain a <code>figcaption</code>
+            labeling that image.
+          </p>
+          <p>
+            If <code>figure</code> is a <code>typeof="sa:table"</code>table, it is a table
+            container. It must contain a <code>table</code> element. If there is a table caption, it
+            should be included using the <code>caption</code> child element of the table, and not
+            the <code>figcaption</code> child of the <code>figure</code>. Table notes may also be
+            included as <code>ol</code> with <code>li</code> elements with the role of
+            <code>doc-footnote</code>.
+          </p>
+          <p>
+            If <code>figure</code> is a <code>typeof="sa:formula"</code>, it is a formula container.
+            It must contain a <code>math</code> element and, optionally, a <code>figcaption</code>
+            describing the formula. The <code>math</code> element must be valid MathML 3.
+            Additionally, given the dismal state of support for MathML in Web browsers the math
+            element must contain an annotation descendant with the TeX equivalent of the formula.
+          </p>
+          <p>
+            If <code>figure</code> is a <code>typeof="schema:SoftwareSourceCode"</code>, it is a
+            code container. It must contain a <code>pre</code> element and, optionally, a
+            <code>figcaption</code>. The <code>pre</code> element must contain a <code>code</code>
+            element as its only child.
+          </p>
+        </section>
+      </section>
+      <section id="inline">
+        <!-- review? -->
+        <h3><span>3.4 </span>Inline Elements</h3>
+        <p>
+          <a href="https://www.w3.org/TR/html51/semantics.html#text-level-semantics">Inline
+          elements</a> decorate, describe, and enrich text. Inline elements can be used inside of
+          hunk elements, heading elements, and captioning elements. Where applicable, they can nest
+          within one another. Inline images and inline math can be inlcuded as well. This can be
+          accomplished using <code>img</code> for images or <code>math</code> for formulas.
+          Equations can be displayed inline or as blocks within a paragaph.
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#mathblock-example" id="mathblock-example" role="doc-example">
+          <pre><code>
+&lt;p&gt;
+  If we should weep when clowns put on their show,
+  if we should stumble when musicians play,
+  &lt;math display="block"&gt;
+    &lt;semantics&gt;
+      &lt;mrow&gt;
+        &lt;mi&gt;Δ&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;mo&gt;=&lt;/mo&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;msub&gt;&lt;mi&gt;q&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/msub&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;mo&gt;×&lt;/mo&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;mo stretchy="false" form="prefix"&gt;(&lt;/mo&gt;
+        &lt;msub&gt;
+          &lt;msup&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;
+          &lt;mrow&gt;
+            &lt;mo stretchy="false" form="prefix"&gt;(&lt;/mo&gt;
+            &lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;,&lt;/mo&gt;
+            &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+            &lt;mi&gt;j&lt;/mi&gt;
+            &lt;mo stretchy="false" form="postfix"&gt;)&lt;/mo&gt;
+          &lt;/mrow&gt;
+        &lt;/msub&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;mo&gt;/&lt;/mo&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;msub&gt;&lt;mi&gt;ε&lt;/mi&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;/msub&gt;
+        &lt;mspace width="0.222em"&gt;&lt;/mspace&gt;&lt;mspace width="0.222em"&gt;&lt;/mspace&gt;
+        &lt;msub&gt;&lt;mi&gt;ε&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/msub&gt;
+        &lt;mo stretchy="false" form="postfix"&gt;)&lt;/mo&gt;
+      &lt;/mrow&gt;
+    &lt;/semantics&gt;
+  &lt;/math&gt;
+  time can say nothing but I told you so.
+&lt;/p&gt;
+          </code></pre>
+          <figcaption></figcaption>
+        </figure>
+      </section>
+      <section id="references">
+        <!-- review? -->
+        <h3><span>3.5 </span>References</h3>
+        <p>
+          The References section requires specific <a href="https://w3c.github.io/scholarly-html/#citations">semantic overlays</a>
+          (reference) as well as strict content structure. Apart from a (required) <code>hx</code>
+          element, it must contain only one <code>ol</code> or <code>dl</code> element.
+        </p>
+        <p>
+          If using a <code>dl</code> element, the contents must be alternating <code>dt</code> and
+          <code>dd</code> elements. The <code>dd</code> must contain the citation.
+        </p>
+        <!-- XXX add references to sem as well as CSS to rearrange order based on citation format -->
+        <p>
+          If using <code>ol</code>, the only contents are <code>li</code> that include citations.
+        </p>
+      </section>
+
+      <section id="interactive">
+        <!-- review? -->
+        <h3><span>3.6 </span>Interactive Elements</h3>
+        <p>
+          information about iframes to come
+        </p>
+        <p class="issue">
+          Let’s discuss details of iframes with the CG
+        </p>
+      </section>
+      <section id="HTMLRoles">
+        <!-- review? -->
+        <h3><span>3.7 </span>HTML Roles</h3>
+        <p>
+          It is possible to provide information about an HTML element by decorating it with the
+          <a href="https://www.w3.org/TR/html51/dom.html#aria-role-attribute">role</a> attribute. The
+          <a href="https://www.w3.org/TR/wai-aria-1.1/">ARIA</a> vocabulary and its extensions provide
+          convenient terms that are relevant to document structure. The following roles from ARIA and
+          <a href="https://www.w3.org/TR/dpub-aria-1.0/">DPUB-ARIA</a> should be applied where
+          appropriate:
+        </p>
+        <ul>
+          <li>
+            <a href="https://www.w3.org/TR/wai-aria-1.1/#contentinfo">contentinfo</a> to apply to the
+            <code>div</code> containing author and affiliation information
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/wai-aria-1.1/#definition">definition</a> for defining a
+            term, such as a keyword or a glossary term
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/wai-aria-1.1/#term">term</a> for a term corresponding to a
+            definition
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/wai-aria-1.1/#presentation">presentation</a> to indicate
+            that an image is purely decorative
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-abstract">doc-abstract</a> on the
+            <code>section</code> that contains the abstract
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-acknowledgments">doc-acknowledgments</a>
+            on the <code>section</code> that contains acknowledgements (note that this is not the same
+            as funding information).
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-appendix">doc-appendix</a> on the
+            <code>section</code> that contains the appendix
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-biblioentry">doc-biblioentry</a> on the
+            list item that includes a citation
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-bibliography">doc-bibliography</a> on
+            the <code>section</code> or list that contains the references or works cited
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-conclusion">doc-conclusion</a> on the
+            <code>section</code> that explicity concludes the article
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-dedication">doc-dedication</a> on the
+            dedication element of the article (allowed on any hunk element)
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-endnote">doc-endnote</a> on an
+            individual note item in a collection of notes
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-dedication">doc-endnotes</a> on the
+            <code>section</code> containing a group of notes
+          </li>
+          <li class="issue">
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-errata">doc-errata</a> on a ???
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-example">doc-example</a> on a hunk
+            element containing an illustrative concept, such as a code sample.
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-footnote">doc-footnote</a> on a hunk
+            element containing an individual note, such as an informative note about the author or
+            table footnote
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-introduction">doc-introduction</a> on
+            the <code>section</code> introducing the article, if relevant
+          </li>
+          <li>
+            <a href="https://www.w3.org/TR/dpub-aria-1.0/#doc-subtitle">doc-subtitle</a> to indicate
+            that a portion of a heading is a secondary or alternate title of the work
+          </li>
+        </ul>
+        <p class="issue">
+          Should we require ARIA’s table, grid, rowheader, and rowgroup?
+        </p>
+        <p class="issue">
+          I did not include doc-credit bc of extensive citation markup in JSON-LD
+        </p>
+        <p class="issue">
+          doc-endnote, doc-endnotes are not in the current published draft of DPUB-ARIA. See
+          <a href="http://rawgit.com/w3c/aria/master/aria/dpub.html">March DPUB-ARIA draft</a>
+        </p>
+      </section>
+      <section id="validate">
+        <!-- review? -->
+        <h3><span>3.8 </span>Validation</h3>
+        <p>
+          The only validation requirement for Scholarly HTML at this point is that the HTML is valid.
+          We are considering building a a validation tool in RelaxNG or JavaScript to check compliance
+          with this set of rules.
+        </p>
+        <p>
+          Articles should be in the following basic structure:
+        </p>
+        <ul>
+          <li>heading with article title</li>
+          <li>0+ hunks</li>
+          <li>
+            0+ sections
+            <ul>
+              <li>0+ headings</li>
+              <li>0+ hunks</li>
+              <li>0+ sections</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          It must feature a <code>DOCTYPE</code> as its preamble.
+        </p>
+      </section>
+    </section>
+    <section id="semantics">
+      <!-- review? -->
+      <h2><span>4. </span>Semantics Overlay</h2>
+      <p>
+        HTML provides an excellent backbone with which to capture the
+        <a href="https://w3c.github.io/scholarly-html/#structure">structure</a> of a given text but is evidently limited when it comes to
+        capturing more domain-specific concepts such as people, spaceships,
+        <a href="http://existentialcomics.com/comic/122">Humean causation</a>, or
+        <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0109888">sthenurines</a>.
+        That is where semantic overlays with the ability to refine the meaning and relations of
+        HTML elements come into play. Scholarly HTML makes use of two standard mechanisms that
+        overlay additional semantics atop the HTML DOM: role-based semantics as defined by
+        <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-WAI-ARIA">WAI-ARIA</a> and <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-DPUB-ARIA">DPUB-ARIA</a>, and
+        semantics rooted in structured data as captured by <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-RDFa">RDFa</a>.
+      </p>
+      <p>
+        Using technologies related to the semantic web can at times feel daunting and unrelated to
+        everyday web development. In order to suppress this disconnect, Scholarly HTML follows a
+        few simple guiding principles:
+      </p>
+      <ul>
+        <li>
+          The number of prefixes used for semantic properties is kept as small as possible;
+        </li>
+        <li>
+          There is no such thing as a URI (or URN, IRI, XRI, or whatever else confusing
+          contraption), everything is a URL;
+        </li>
+        <li>
+          Where somewhat more complex modeling is required, it is put together using a small set of
+          common patterns that might require some initial learning but can be applied regularly
+          with relative ease (notably <a href="https://w3c.github.io/scholarly-html/#roles">roles</a> and actions).
+        </li>
+      </ul>
+      <p>
+        The properties that Scholarly HTML uses are naturally document-related (authorship,
+        keywords, license, citations, as well as specific structure types such as acknowledgements,
+        introduction, or funding), which additionally requires the ability to describe people and
+        organizations. There are numerous vocabularies that address this domain and which could be
+        used with <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-RDFa">RDFa</a>; however, for reasons detailed in
+        <a href="https://research.science.ai/article/web-first-data-citations#choice-of-ontology">Web-First
+        Data Citations</a> Scholarly HTML relies almost exclusively on
+        <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-schema.org">schema.org</a>, complemented by a small number of additions from
+        the <a href="https://w3c.github.io/scholarly-html/#scholarly-article">Scholarly Article Vocabulary</a>.
+      </p>
+      <section id="person-org">
+        <!-- review? -->
+        <h3><span>4.1 </span>Persons &amp; Organizations</h3>
+        <p>
+          Marking up persons and organizations can make use of any applicable properties in
+          <a href="http://schema.org/Person" class="onto">schema:Person</a> and <a href="http://schema.org/Organization" class="onto">schema:Organization</a>, respectively, but it is worth
+          pointing out some good practices with how these are to be used in practice.
+        </p>
+        <p>
+          If the entity in question has a URL then it is best to use that as its identifier (using
+          the <code>resource</code> attribute) and additionally to provide it as a link using the
+          <code>a</code> element (see the <a href="https://w3c.github.io/scholarly-html/#person-example">person example</a> for an
+          instance of this).
+        </p>
+        <p>
+          If you happen to have information providing both the
+          <a href="http://schema.org/givenName" class="onto">schema:givenName</a>/<a href="http://schema.org/familyName" class="onto">schema:familyName</a><a href="http://schema.org/additionalName" class="onto">schema:additionalName</a> triple and
+          the <a href="http://schema.org/name" class="onto">schema:name</a> (which can be considered to contain the name as the person wishes
+          it to be displayed) for a person then it is (perhaps counterintuitively) best to
+          include <em>all</em> of them and then use CSS (typically sibling selectors) to hide the
+          extraneous ones (alternatively, they can be captured using the <code>meta</code> element).
+          The reason for this is that it exposes more information to machine consumers without
+          having a negative impact on human readers.
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#person-example" id="person-example">
+          <pre><code>
+&lt;span typeof="schema:Person" resource="http://orcid.org/0000-0003-1279-3709"&gt;
+  &lt;meta property="schema:givenName" content="Bruce"&gt;
+  &lt;meta property="schema:familyName" content="Banner"&gt;
+  &lt;a href="http://orcid.org/0000-0003-1279-3709"&gt;
+    &lt;span property="schema:name"&gt;Dr. Bruce Banner&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/span&gt;
+          </code></pre>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of a Person. This demonstrates the use of extraneous name information using
+              <code>meta</code> elements. The container is a <code>span</code> but it could be any
+              other container element. This also shows how <a href="http://schema.org/name" class="onto">schema:name</a> can be used for the
+              person’s preferred display name, as distinct from the more specific structured name
+              information.
+            </span>
+          </figcaption>
+        </figure>
+        <p>
+          Here is also an organization:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#org-example" id="org-example">
+          <pre><code>
+&lt;span typeof="schema:Organization" resource="https://www.w3.org/"&gt;
+  &lt;a href="https://www.w3.org/"&gt;
+    &lt;span property="schema:name"&gt;W3C&lt;/span&gt;
+  &lt;/a&gt;
+  (&lt;span property="schema:location" typeof="schema:Place"&gt;
+    &lt;span property="schema:address" typeof="schema:PostalAddress"&gt;
+      &lt;span property="schema:addressLocality"&gt;Cambridge&lt;/span&gt;,
+      &lt;span property="schema:addressRegion"&gt;MA&lt;/span&gt;,
+      &lt;span property="schema:addressCountry"&gt;USA&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;)
+&lt;/span&gt;
+          </code></pre>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of an Organization. This also features the organization’s address.
+            </span>
+          </figcaption>
+        </figure>
+        <p class="issue">
+          How should we represent name transliterations? Are there language tags for transliterated
+          text? Or should ruby+rdf:HTML be suggested instead? If the latter we can no longer use
+          <code>meta</code> (which is acceptable).
+        </p>
+      </section>
+      <section id="typing-sections">
+        <!-- review? -->
+        <h3><span>4.2 </span>Typing Sections</h3>
+        <p>
+          XXX
+        </p>
+      </section>
+      <section id="roles">
+        <!-- review? -->
+        <h3><span>4.3 </span>Schema Roles</h3>
+        <!--
+          XXX needs rewrite, Dave doesn’t understand, ergo no one will
+          DC suggests contrasting two examples: one in which I am eternally indentured to the
+          Illuminati, versus one in which I am just a hired gun.
+        -->
+        <p>
+          It is worth taking a step back to understand the importance of the <em>role</em>
+          modeling. Its application is clearly exemplified in the <a href="https://w3c.github.io/scholarly-html/#authors">Authors &amp;
+          Contributors</a> section wherein a <a href="http://ns.science.ai/#ContributorRole" class="onto">sa:ContributorRole</a> type is used as a wrapper
+          and not <a href="http://schema.org/Person" class="onto">schema:Person</a> or <a href="http://schema.org/Organization" class="onto">schema:Organization</a> directly.
+        </p>
+        <p>
+          Roles are an indirection that provides additional information about a property or
+          relationship. A simple overview is provided in the schema.org blog post
+          <a href="http://blog.schema.org/2014/06/introducing-role.html">Introducing ’Role’</a>.
+        </p>
+        <p>
+          Let’s look at the example of authorship information. Some properties of the agent who
+          authored the document (person or organization), such as their name, are considered to be
+          true outside the limited context of the document. These properties will be set directly on
+          the agent.
+        </p>
+        <p>
+          On the other hand, other properties are considered to be specific to the agent
+          <em>in their role as author of the document</em>. To give an example, were I to be
+          writing the document you are currently reading as a freelancer for the Illuminati, my
+          affiliation to them would be solely in my role as author and I should not be considered
+          eternally indentured to them.
+        </p>
+        <p>
+          When a role is used to enrich a property, the convention is to have it as the value of
+          that property, and then to repeat the property on the role to point to the object. At
+          first glance it sounds contrived, but it is a simple and powerful construct. To stay with
+          the authoring example, the indirection would look like:
+        </p>
+        <p>
+          <a href="http://schema.org/ScholarlyArticle" class="onto">schema:ScholarlyArticle</a> ⟼
+          <em><a href="http://schema.org/author" class="onto">schema:author</a></em> ⟼
+          <a href="http://ns.science.ai/#ContributorRole" class="onto">sa:ContributorRole</a> ⟼
+          <em><a href="http://schema.org/author" class="onto">schema:author</a></em> ⟼
+          <a href="http://schema.org/Person" class="onto">schema:Person</a>
+        </p>
+        <p>
+          To demonstrate how properties can attach differently to the role and to the agent, we can
+          unfold the authorship example further:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#role-example" id="role-example">
+          <pre><a href="http://schema.org/ScholarlyArticle" class="onto">schema:ScholarlyArticle</a>
+└─<a href="http://schema.org/author" class="onto">schema:author</a>
+  └─<a href="http://ns.science.ai/#ContributorRole" class="onto">sa:ContributorRole</a>
+    ├─<a href="http://schema.org/author" class="onto">schema:author</a>
+    │ └─<a href="http://schema.org/Person" class="onto">schema:Person</a>
+    │   ├─<a href="http://schema.org/name" class="onto">schema:name</a> = Bruce Banner
+    │   └─<a href="http://schema.org/url" class="onto">schema:url</a> = http://berjon.com/
+    └─<a href="http://ns.science.ai/#roleAffiliation" class="onto">sa:roleAffiliation</a>
+      └─<a href="http://schema.org/Organization" class="onto">schema:Organization</a>
+        ├─<a href="http://schema.org/name" class="onto">schema:name</a> = Illuminati
+        └─<a href="http://schema.org/address" class="onto">schema:address</a> = Bavaria
+          </pre>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of a role being used to model authorship. This effectively states that my
+              affiliation <em>as a contributor</em> is to the Illuminati and that my name
+              <em>as a person</em> is Bruce Banner.
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+      <section id="actions">
+        <!-- review? -->
+        <h3><span>4.4 </span>Actions</h3>
+        <p>
+          Actions are a global <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-schema.org">schema.org</a> mechanism to convey facts
+          about things that can be or have been <em>done</em>. There is an
+          <a href="http://schema.org/docs/actions.html">overview document for actions</a> but it
+          dives deep very fast and may be more confusing than helpful. This sections intends to
+          convey all that one needs to know about actions in order to understand their usage in
+          Scholarly HTML (keeping in mind that they can do much more).
+        </p>
+        <p>
+          Note that actions can do much more than what Scholarly HTML uses them for. For instance,
+          if you use an email client that supports actions (such as GMail) you may have noticed that
+          some emails allow for direct interactions: those are implemented using actions, and
+          without scripting.
+        </p>
+        <p>
+          Actions have a type (e.g. <code>ReadAction</code>, <code>DrinkAction</code>), a status
+          (completed, in progress…), an agent being whoever carries it out, and an object which is
+          what they are being done to. They can also have start and end times (as well as several
+          other properties which we won’t go into here). Scholarly articles typically feature
+          indications about things that people have done, which is a good fit for modeling with
+          actions. A few examples should help clarify the notion.
+        </p>
+        <p>
+          When referencing an online work, it is customary to indicate the access date for it (since
+          it may have changed in the meantime). This can be modeled as a <a href="http://schema.org/ReadAction" class="onto">schema:ReadAction</a>,
+          with its <a href="http://schema.org/actionStatus" class="onto">schema:actionStatus</a> set to <code>CompletedActionStatus</code>, and a
+          <a href="http://schema.org/endTime" class="onto">schema:endTime</a> being the access date. In JSON-LD it would look like this:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#read-action-example" id="read-action-example">
+          <pre><code>
+{
+  "@type":        "ReadAction",
+  "actionStatus": "CompletedActionStatus",
+  "endTime":      "1977-03-15"
+}
+          </code></pre>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of a <a href="http://schema.org/ReadAction" class="onto">schema:ReadAction</a> used to model the access date of an online
+              citation. Both the object and the agent are implicit in the context in which it is
+              used.
+            </span>
+          </figcaption>
+        </figure>
+        <p>
+          Authors often acknowledge the contributions of others or have to disclose potential
+          conflicts of interest that may stem from their interactions outside of the article.
+          The former can be conveyed as an <a href="http://ns.science.ai/#AcknowledgeAction" class="onto">sa:AcknowledgeAction</a> in which the
+          <a href="http://schema.org/name" class="onto">schema:name</a> of the action is the verb part of the acknowledgement and the
+          <a href="http://schema.org/recipient" class="onto">schema:recipient</a> is the person (or entity of any kind) being acknowledged. The
+          agent is typically implicitly specified as the object to which the action is attached.
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#read-action-example" id="read-action-example">
+          <pre><code>
+{
+  "@type": "AcknowledgeAction",
+  "actionStatus": "CompletedActionStatus",
+  "name": "is thankful for the pioneering contribution of",
+  "recipient": {
+    "@type": "Person",
+    "name": "Vannevar Bush",
+  }
+}
+            </code></pre>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of an <a href="http://ns.science.ai/#AcknowledgeAction" class="onto">sa:AcknowledgeAction</a> in which the author (not shown) acknowledges
+              contributions from Vannevar Bush.
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+      <section id="article-title-semantics">
+        <!-- review? -->
+        <h3><span>4.5 </span>Article and Title Semantics</h3>
+        <p>
+          The <code>article</code> element that roots the content of the Scholarly HTML document
+          needs further refinement to capture the specific type of article that it encodes. The
+          <code>typeof</code> attribute should always contain <a href="http://schema.org/ScholarlyArticle" class="onto">schema:ScholarlyArticle</a> as its
+          first item, but it can be further refined with additional article types.
+        </p>
+        <p class="issue">
+          Should we recommend a specific taxonomy for article (sub)typing? There are so many:
+          Fabio, MeSH, NPG…
+        </p>
+        <p>
+          In order for arbitrary parts of the document to be able to attach metadata to the
+          <code>article</code>, it also needs to have its <code>resource</code> attribute set to a
+          URL that can be referenced (it is typically sufficient to just use <code>#</code> for that
+          purpose).
+        </p>
+        <p>
+          While the <code>h1</code> in the document’s <code>header</code> is sufficient to convey
+          the fact that it is the document’s title, some services use extraneous information in
+          order to assign an unambiguous title to the document. As such, it needs to have its
+          <code>property</code> attribute set to <a href="http://schema.org/name" class="onto">schema:name</a>. Similary, if a subtitle is
+          present in the <code>header</code> it needs to be decorated with both a <code>role</code>
+          of <code>doc-subtitle</code> (to expose its <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-DPUB-ARIA">DPUB-ARIA</a>
+          semantics) and a <code>property</code> of <a href="http://schema.org/alternateName" class="onto">schema:alternateName</a>.
+        </p>
+        <p>
+          If appropriate, the beginning of the <code>article</code> is also a good place in which to
+          capture the accessibility properties of the document, using the relevant parts of
+          <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-schema.org">schema.org</a> (<a href="http://schema.org/accessibilityFeature" class="onto">schema:accessibilityFeature</a>,
+          <a href="http://schema.org/accessibilityHazard" class="onto">schema:accessibilityHazard</a>, <a href="http://schema.org/accessibilityAPI" class="onto">schema:accessibilityAPI</a>, and
+          <a href="http://schema.org/accessibilityControl" class="onto">schema:accessibilityControl</a>, as detailed in
+          <a href="https://www.w3.org/wiki/WebSchemas/Accessibility">the WebSchemas Accessibility
+          wiki page</a>).
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#article-example" id="article-example">
+          <pre><code>
+&lt;article <strong>resource="#" typeof="schema:ScholarlyArticle"</strong>&gt;
+  &lt;header&gt;
+    &lt;h1 <strong>property="schema:name"</strong>&gt;Is Cryptopaleozoology Hopeless?&lt;/h1&gt;
+    &lt;p <strong>role="doc-subtitle" property="schema:alternateName"</strong>&gt;
+      The Future of the Scientific Method
+    &lt;/p&gt;
+  &lt;/header&gt;
+  <strong>&lt;meta property="schema:accessibilityFeature" content="alternativeText"&gt;
+  &lt;meta property="schema:accessibilityFeature" content="MathML"&gt;
+  &lt;meta property="schema:accessibilityHazard" content="noFlashingHazard"&gt;</strong>
+&lt;/article&gt;
+          </code></pre>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of <code>article</code> and title markup.
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+      <section id="contentinfo-semantics">
+        <!-- review? -->
+        <h3><span>4.6 </span>The <code>contentinfo</code> Region Semantics</h3>
+        <p>
+          As described in the <a href="https://w3c.github.io/scholarly-html/#structure">Structure section</a>, the <code>contentinfo</code>
+          region serves as a container for the metadata of the article. It is itself nothing more
+          than a <code>div</code> with a <code>role</code> of <code>contentinfo</code>, but its
+          content has rich structure.
+        </p>
+        <p>
+          It contains a list of <code>section</code> elements, each of which is identified with a
+          specific <code>typeof</code> attribute.
+        </p>
+        <section id="authors">
+          <!-- review? -->
+          <h4><span>4.6.1 </span>Authors &amp; Contributors</h4>
+          <p>
+            If the document has authors or contributors, they are listed in a <code>section</code>
+            with <code>typeof</code> <a href="http://ns.science.ai/#AuthorsList" class="onto">sa:AuthorsList</a>. The content of that <code>section</code>
+            is an <code>h2</code> title appropriate for it, followed by either a <code>ul</code> or
+            <code>ol</code> (depending on whether the authors are considered ordered, which is
+            highly dependent on the discipline’s culture).
+          </p>
+          <p>
+            Each <code>li</code> in that list must feature a <code>typeof</code> of
+            <a href="http://ns.science.ai/#ContributorRole" class="onto">sa:ContributorRole</a> and a property of either <a href="http://schema.org/author" class="onto">schema:author</a> or
+            <a href="http://schema.org/contributor" class="onto">schema:contributor</a> depending on which is applicable. Modeling with schema.org
+            roles is explained in the <a href="https://w3c.github.io/scholarly-html/#roles">Roles</a> section.
+          </p>
+          <p>
+            The <a href="http://ns.science.ai/#ContributorRole" class="onto">sa:ContributorRole</a> <code>span</code> is structured as follows:
+          </p>
+          <ul>
+            <li>
+              Exactly one <code>span</code> with a <code>property</code> of either
+              <a href="http://schema.org/author" class="onto">schema:author</a> or <a href="http://schema.org/contributor" class="onto">schema:contributor</a> (matching the one that points to the
+              role) and <code>typeof</code> either <a href="http://schema.org/Person" class="onto">schema:Person</a> (if the author is a sentient
+              entity) or <a href="http://schema.org/Organization" class="onto">schema:Organization</a> (if it is a collective thereof). How to capture
+              persons and organizations is detailed in the creatively-named
+              <a href="https://w3c.github.io/scholarly-html/#person-org">Persons &amp; Organizations</a> section.
+            </li>
+            <li>
+              Zero or more <code>a</code> elements with a <code>property</code> of
+              <a href="http://ns.science.ai/#roleAffiliation" class="onto">sa:roleAffiliation</a>, one for each affiliation of the author in producing the
+              article. Each of those elements needs further to have a <code>resource</code>
+              attribute matching the one on the affiliation it is pointing to and an
+              <code>href</code> attribute linking to the element on which that affiliation is
+              defined. The <code>a</code> element may contain arbitrary text (typically a number,
+              letter, or symbol matching that used by the target in its own list). These should not
+              occur if the agent is an organization.
+            </li>
+            <li>
+              Zero or more <code>a</code> elements with a <code>property</code> of
+              <a href="http://ns.science.ai/#roleAction" class="onto">sa:roleAction</a>, one for each comment describing the author’s specific
+              contribution to the work (e.g. "Authors contributed equally" or "Designed the study").
+              Each of those elements needs further to have a <code>resource</code>
+              attribute matching the one on the note it is pointing to and an
+              <code>href</code> attribute linking to the element which contains that note. The
+              <code>a</code> element may contain arbitrary text (typically a number, letter, or
+              symbol matching that used by the target in its own list).
+            </li>
+            <li>
+              Zero or one <code>ul</code> elements. Each of its <code>li</code> children has a
+              <code>property</code> of <a href="http://schema.org/roleContactPoint" class="onto">schema:roleContactPoint</a> and a <code>typeof</code> set
+              to <a href="http://schema.org/ContactPoint" class="onto">schema:ContactPoint</a>. The content of each <code>li</code> can be anything
+              that describes a manner of contacting the author in question, but it will typically
+              involve properties such as <a href="http://schema.org/email" class="onto">schema:email</a>, <a href="http://schema.org/telephone" class="onto">schema:telephone</a>,
+              <a href="http://schema.org/address" class="onto">schema:address</a>, <a href="http://schema.org/description" class="onto">schema:description</a> (for arbitrary descriptions of the
+              contact method), or for journals publishing to the Web of the early 1980s
+              <a href="http://schema.org/faxNumber" class="onto">schema:faxNumber</a>.
+            </li>
+          </ul>
+          <p>
+            Here is an example of a complete kitchen sink authors’ section. Note that in most cases
+            the markup will be much simpler — this exercises far more of the features than there
+            is information for in a typical case.
+          </p>
+          <figure typeof="schema:SoftwareSourceCode" resource="#authors-example" id="authors-example">
+            <pre><code>
+&lt;section typeof="sa:AuthorsList"&gt;
+  &lt;h2&gt;Authors&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li typeof="sa:ContributorRole" property="schema:author"&gt;
+      &lt;span typeof="schema:Person"
+            resource="https://en.wikipedia.org/wiki/John_Henry_Holland"&gt;
+        &lt;meta property="schema:givenName" content="John"&gt;
+        &lt;meta property="schema:additionalName" content="Henry"&gt;
+        &lt;meta property="schema:familyName" content="Holland"&gt;
+        &lt;span property="schema:name"&gt;John H. Holland&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;a href="#sf" property="sa:roleAffiliation" resource="http://www.santafe.edu/"&gt;a&lt;/a&gt;,
+      &lt;a href="#umich" property="sa:roleAffiliation" resource="http://umich.edu/"&gt;b&lt;/a&gt;,
+      &lt;a href="#note1" property="sa:roleAction" resource="#note1" rel="footnote"&gt;1&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li property="schema:roleContactPoint" typeof="schema:ContactPoint"&gt;
+          &lt;a href="mailto:jholland@umich.edu"
+             property="schema:email"&gt;jholland@umich.edu&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li property="schema:roleContactPoint" typeof="schema:ContactPoint"&gt;
+          &lt;a href="fax:+4815162342" property="schema:faxNumber"&gt;+4815162342&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+            </code></pre>
+            <figcaption>
+              <span property="schema:name"></span>
+              <span property="schema:description">
+                Example of an author (<code>schema:contributor</code> could also have been used).
+                The links to <code>#sf</code>, <code>#umich</code>, and <code>#note1</code> are
+                expected to point to items in the <a href="https://w3c.github.io/scholarly-html/#affiliations">Affiliations</a> section
+                for the first two, and in the <a href="https://w3c.github.io/scholarly-html/#meta-notes">Notes</a> section for the
+                last one.
+              </span>
+            </figcaption>
+          </figure>
+        </section>
+        <section id="affiliations">
+          <!-- review? -->
+          <h4><span>4.6.2 </span>Affiliations</h4>
+          <p>
+            If the authors and contributors of the documents are affiliated with organizations, they
+            are listed in a <code>section</code> with <code>typeof</code> <a href="http://ns.science.ai/#Affiliations" class="onto">sa:Affiliations</a>.
+            The content of that <code>section</code> is an <code>h2</code> title appropriate for it,
+            followed by a <code>ul</code> or <code>ol</code> (but the order is less commonly
+            relevant than it is for authors).
+          </p>
+          <p>
+            Note that articles that feature an organization as an author should have that
+            organization listed in the <a href="https://w3c.github.io/scholarly-html/#authors">Authors &amp; Contributors</a> section,
+            and <em>not</em> here.
+          </p>
+          <p>
+            Each <code>li</code> in the list is one affiliation (though multiple people can
+            reference it). The <code>li</code> needs to have an <code>id</code> matching that used
+            in the reference. Inside the <code>li</code> is a <code>span</code> with
+            <code>typeof</code> set to <a href="http://schema.org/Organization" class="onto">schema:Organization</a> and its <code>resource</code>
+            also matching the one used in the reference. (The belt and suspenders approach is
+            unfortunately needed to produce both usable HTML and a viable data model.)
+          </p>
+          <p>
+            The content of the <a href="http://schema.org/Organization" class="onto">schema:Organization</a> can contain any applicable property. An
+            example of an affiliations section, with some extra structure for the organization is
+            given below.
+          </p>
+          <figure typeof="schema:SoftwareSourceCode" resource="#affiliations-example" id="affiliations-example">
+            <pre><code>
+&lt;section typeof="sa:Affiliations"&gt;
+  &lt;h2&gt;Affiliations&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li id="sa"&gt;
+      &lt;span typeof="schema:Organization" resource="https://science.ai/"&gt;
+        &lt;span property="schema:name"&gt;science.ai&lt;/span&gt;,
+        &lt;span property="schema:parentOrganization"&gt;
+          &lt;span typeof="schema:Organization"&gt;
+            &lt;span property="schema:name"&gt;Standard Analytics&lt;/span&gt;
+            —
+            &lt;span property="schema:location" typeof="schema:Place"&gt;
+              &lt;span property="schema:address" typeof="schema:PostalAddress"&gt;
+                &lt;span property="schema:addressLocality"&gt;NYC&lt;/span&gt;,
+                &lt;span property="schema:addressRegion"&gt;NY&lt;/span&gt;,
+                &lt;span property="schema:addressCountry"&gt;USA&lt;/span&gt;
+              &lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+            </code></pre>
+            <figcaption>
+              <span property="schema:name"></span>
+              <span property="schema:description">
+                Example of an organization section.
+              </span>
+            </figcaption>
+          </figure>
+        </section>
+        <section id="abstract-etc">
+          <!-- review? -->
+          <h4><span>4.6.3 </span>License, Copyright, Keywords, and Abstract</h4>
+          <p>
+            The copyright line of the document can be included in any element, but it must list two
+            properties. <a href="http://schema.org/copyrightYear" class="onto">schema:copyrightYear</a> has a numeric value, and
+            <a href="http://schema.org/copyrightHolder" class="onto">schema:copyrightHolder</a> has a value of <a href="http://schema.org/Person" class="onto">schema:Person</a> or
+            <a href="http://schema.org/Organization" class="onto">schema:Organization</a>.
+          </p>
+          <p>
+            A link to the license for the article should be provided. The link should have the
+            property of <a href="http://schema.org/license" class="onto">schema:license</a> and <code>typeof="CreativeWork"</code>.
+          </p>
+          <!-- XXX insert simple license example to CC?-->
+          <p>
+            Keywords should be listed in a <code>section</code> element with an appropriate
+            <code>h2</code>. The list of terms should be a <code>ul</code> with the
+            <code>property</code> of <a href="http://schema.org/keywords" class="onto">schema:keywords</a> on every <code>li</code>.
+          </p>
+          <p>
+            The abstract should be included in a <code>section</code> element with
+            <code>typeof</code> attribute containing <code>sa:Abstract</code>. The abstract should
+            have the role of <code>doc-abstract</code>.
+          </p>
+        </section>
+        <section id="meta-notes">
+          <!-- review? -->
+          <h4><span>4.6.4 </span>Notes</h4>
+          <p>
+            Notes that add information about the <a href="https://w3c.github.io/scholarly-html/#authors">Authors and Contributors</a>
+            section should be hunk elements labeled as <code>doc-footnote</code>.
+          </p>
+          <!-- these are rdf:HTML? probably not -->
+        </section>
+      </section>
+      <section id="flavored-links">
+        <!-- review? -->
+        <h3><span>4.7 </span>Flavored Links</h3>
+        <p>
+          The <a href="https://www.w3.org/TR/html51/semantics.html#linkTypes"><code>rel</code></a>
+          attribute should be applied to apply some spice to your links. The following values of
+          <code>rel</code> should be used on the link that refers to these elements:
+        </p>
+        <ul>
+          <li>footnote</li>
+          <li>license</li>
+          <li>stylesheet</li>
+        </ul>
+        <p class="issue">
+          There are many values for rel, such as glossary and bibliography that look like they are
+          useful, but based on the definition, it sounds like they point to the section containing
+          the whole biblio. Not so helpful. rel="citation" or "biblioentry" would be more valuable.\
+        </p>
+      </section>
+      <section id="citations">
+        <!-- review? -->
+        <h3><span>4.8 </span>Citations &amp; References</h3>
+        <p>
+          Citations in scholarly articles provide a way to reference the work of others upon which
+          one builds. In the pre-Web era, they essentially served as links by carrying sufficient
+          information for one to find the reference in question, in a relatively compact manner.
+        </p>
+        <p>
+          In a Web world, it can seem tempting to simply replace citations with links, but there is
+          value in keeping the limited amount of metadata about the cited object that they provide
+          inlined in the document. Links rot and disappear; when that happens the rest of the
+          information can prove crucial in finding the referenced object at some other location.
+          Unique identifiers with indirect resolution, such as DOIs, might seem like a solution to
+          this problem but being opaque humans routinely get them wrong. (DOIs additionally suffer
+          from a single point of failure for resolution.) All things considered, including a link
+          for convenience and human-readable metadata about the referenced object is likely the
+          most resilient way to cite another document.
+        </p>
+        <p>
+          In the print universe, reducing the number of pages one needs to use can be a noticeable
+          cost-saver. Given that scholarly articles can easily feature dozens if not hundreds of
+          cited references, making use of compact reference conventions (as well as smaller font
+          sizes) made sense. Over time, however, what was a sensible idea degenerated into a
+          territorial maze of gratuitously heterogenous conventions to the point where there now
+          exist <a href="http://citationstyles.org/">over 8000 citation styles</a>.
+        </p>
+        <p>
+          There is no value in Scholarly HTML so much as attempting to support all citation styles.
+          The Web does not need the compactness. Citations and references should be both data-rich
+          and human-accessible, something on which the traditional formats fail, in some cases
+          quite spectacularly.
+        </p>
+        <p>
+          For accessibility purposes, Scholarly HTML recommends that references be formatted in such
+          a manner that they read naturally in the article’s natural language, with articulations
+          between the metadata parts, as below:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#citation-example" id="citation-example">
+          <pre><code>
+&lt;li typeof="schema:WebPage" role="doc-biblioentry"
+    resource="http://semver.org/"
+    property="schema:citation" id="some-id"&gt;
+ &lt;cite property="schema:name"&gt;
+   &lt;a href="http://semver.org/"&gt;Semantic Versioning 2.0.0&lt;/a&gt;
+ &lt;/cite&gt;,
+  by &lt;span property="schema:author" typeof="schema:Person"&gt;
+   &lt;span property="schema:givenName"&gt;Tom&lt;/span&gt;
+   &lt;span property="schema:familyName"&gt;Preston-Werner&lt;/span&gt;
+ &lt;/span&gt;; published in
+ &lt;time property="schema:datePublished" datatype="xsd:gYear"
+       datetime="2014"&gt;2014&lt;/time&gt;
+ &lt;span property="schema:potentialAction" typeof="schema:ReadAction"&gt;
+   &lt;meta property="schema:actionStatus" content="CompletedActionStatus"&gt;
+    (accessed on
+   &lt;time property="schema:endTime" datatype="xsd:date"
+         datetime="2016-02-01"&gt;01 Feb 2016&lt;/time&gt;)
+ &lt;/span&gt;.
+&lt;/li&gt;
+          </code></pre>
+          <p>
+            The above code renders as:
+          </p>
+          <ol>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="http://semver.org/" property="schema:citation" id="some-id">
+              <cite property="schema:name">
+                <a href="http://semver.org/">Semantic Versioning 2.0.0</a>
+              </cite>,
+              by <span property="schema:author" typeof="schema:Person">
+                <span property="schema:givenName">Tom</span>
+                <span property="schema:familyName">Preston-Werner</span>
+              </span>; published in
+              <time property="schema:datePublished" datatype="xsd:gYear" datetime="2014">2014</time>
+              <span property="schema:potentialAction" typeof="schema:ReadAction">
+                <meta property="schema:actionStatus" content="CompletedActionStatus">
+                (accessed on
+                <time property="schema:endTime" datatype="xsd:date" datetime="2016-02-01">01 Feb 2016</time>)
+              </span>.
+            </li>
+          </ol>
+          <figcaption>
+            <span property="schema:name"></span>
+            <span property="schema:description">
+              Example of a readable citation.
+            </span>
+          </figcaption>
+        </figure>
+        <p>
+          The references section is simply a <code>section</code> with an appropriate heading,
+          containing an <code>ol</code>. Each <code>li</code> in the list follows a regular
+          structure: it has a <code>role</code> of <code>doc-biblioentry</code>, a
+          <code>resource</code> being the URL identifying the cited object, a <code>property</code>
+          of <a href="http://schema.org/citation" class="onto">schema:citation</a>, and <code>id</code> to make it linkable, and a
+          <code>typeof</code> capturing the kind of object that is being referenced (typically
+          <a href="http://schema.org/ScholarlyArticle" class="onto">schema:ScholarlyArticle</a>, <a href="http://schema.org/Book" class="onto">schema:Book</a>, or <a href="http://schema.org/WebPage" class="onto">schema:WebPage</a> but there is
+          really no limit as to what may be cited).
+        </p>
+        <p>
+          The content of the <code>li</code> can be any <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-RDFa">RDFa</a> that
+          matches the <code>typeof</code>, but some good practices should be observed.
+        </p>
+        <p>
+          The title or name of the cited object should be in a <code>cite</code> element. If a link
+          is available, then the title should be linked. Date and time values (such as publication
+          or access date) should make use of the <code>time</code> element (further noting that
+          the <code>datatype</code> attribute can be used to express the granularity of the date as
+          in the example above).
+        </p>
+        <p>
+          While arbitrary metadata may be used, it is highly recommended to stick to
+          <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-schema.org">schema.org</a> and the
+          <a href="https://w3c.github.io/scholarly-html/#scholarly-article">Scholarly Article</a> vocabularies. The reason for that is
+          that, should one wish to convert from Scholarly HTML citations into a specific print
+          format then it will be desirable to be able to reliably extract information from the
+          citations. This could be used for instance to produce <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-CSL">CSL</a>
+          variables (as <a href="http://citationstyles.org/developers/">exemplified in the CSL
+          documentation</a>) and then use a CSL implementation in order to produce the output.
+        </p>
+        <p class="issue">
+          Should we be more constraining and define more precisely the constructs that are more
+          likely to interoperate?
+        </p>
+        <p class="issue">
+          Providing a mapping to CSL would be extremely useful.
+        </p>
+      </section>
+      <section id="footnotes">
+        <!-- review? -->
+        <h3><span>4.9 </span>Footnotes &amp; Endnotes</h3>
+        <p>
+          If the document has notes, they are listed in a <code>section</code> with the role of
+          <code>doc-endnotes</code>. The content of that <code>section</code> is an <code>h2</code>
+          title appropriate for it, followed by either a <code>ul</code> or <code>ol</code>. Each
+          <code>li</code> should be labeled with the role of <code>doc-endnote</code>.
+        </p>
+      </section>
+      <section id="funding">
+        <!-- review? -->
+        <h3><span>4.10 </span>Funding Information</h3>
+        <p>
+          Funding informations is provided using a complex triples structure which can be summarized
+          as follows:
+        </p>
+        <ul>
+          <li>subject: receiver of funding (example: Author)</li>
+          <li>predicate: string or sponsor role (example: wasFundedBy)</li>
+          <li>object: funding organization (example: Bill &amp; Melinda Gates Foundation)</li>
+        </ul>
+        <p>
+          This can be enhanced with information such as the award name and Role information. Here is
+          a detailed example:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode" resource="#funding-example" id="funding-example" role="doc-example">
+          <pre><code>
+XXX this example has issues
+&lt;section id="funding" typeof="sa:Funding"&gt;
+  &lt;h2 role="doc-title"&gt;Funding&lt;/h2&gt;
+  &lt;ol property="schema:sponsor"&gt;
+    &lt;li resource="http://funding.example.org/" typeof="sa:SponsorRole"&gt;
+      &lt;span typeof="schema:Person" resource="http://example.name/"&gt;
+        &lt;span property="schema:name"&gt;Xiong Ding&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;span property="schema:name"&gt;acknowledges support from&lt;/span&gt;
+      &lt;ul&gt;
+        &lt;li&gt;
+          &lt;span typeof="schema:Organization" resource="http://www.nuc.edu.cn/"&gt;
+            &lt;a href="http://www.nuc.edu.cn/" property="schema:name"&gt;North University of China&lt;/a&gt;
+          &lt;/span&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;span property="schema:roleOffer" typeof="schema:FundingSource"&gt;
+        &lt;span property="schema:name"&gt;The 11th Graduate Science and Technology Projects&lt;/span&gt;
+        (&lt;span property="schema:alternateName"&gt;Natural Science Project&lt;/span&gt;)
+        &lt;span property="schema:serialNumber"&gt;20141130&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/section&gt;
+          </code></pre>
+          <figcaption></figcaption>
+        </figure>
+      </section>
+      <section id="disclosures">
+        <!-- review? -->
+        <h3><span>4.11 </span>Disclosures</h3>
+        <p>
+          Disclosure information is a list of disclosure actions described in a simple triples
+          structure.
+        </p>
+        <ul>
+          <li>
+            The subject is always one of the contributor roles (example: Author)
+          </li>
+          <li>
+            The name of the action (nerd-talk: predicate, human-speak: verb) is a string describing
+            the action (example: "received beer from")
+          </li>
+          <li>
+            The recipient, or object, is the direct object of the sentence (example: Guinness)
+          </li>
+        </ul>
+      </section>
+      <section id="acknowledgements">
+        <!-- review? -->
+        <h3><span>4.12 </span>Acknowledgements</h3>
+        <p>
+          XXX
+        </p>
+      </section>
+    </section>
+    <section id="scholarly-article">
+      <!-- review? -->
+      <h2><span>5. </span>Scholarly Article Vocabulary</h2>
+      <p>
+        A limited number of classes and properties are currently not available from
+        <a role="doc-biblioref" href="https://w3c.github.io/scholarly-html/#ref-schema.org">schema.org</a>. In most if not all cases it would be desirable to
+        make them available there, but while work is progressing it is simpler to define them
+        ourselves.
+      </p>
+      <p class="issue">
+        The current URL for the Scholarly Article vocabulary is
+        <code>http://ns.science.ai/</code>. It may be desirable (should the vocabulary persist) to
+        use a different URL. But this issue might go away if schema.org steps up.
+      </p>
+      <p>
+        You can read the <a href="http://ns.science.ai/">definitions for the SA vocabulary</a>.
+      </p>
+    </section>
+    <section id="hypermedia">
+      <!-- review? -->
+      <h2><span>6. </span>Hypermedia Controls</h2>
+      <!--
+        - explain how to model hypermedia integration, cases:
+          - viewing
+          - paying
+          - annotating
+      -->
+    </section>
+    <section id="processing-model">
+      <!-- review? -->
+      <h2><span>7. </span>Processing Model</h2>
+      <!--
+        - basically explain what a processor ignores and what its internal model looks like
+        - the processing extracts (almost) pure HTML, it then uses the RDFa to enrich that
+      -->
+    </section>
+    <section id="acks">
+      <!-- review? -->
+      <h2><span>8. </span>Acknowledgements</h2>
+      <p>
+        Scholarly HTML would like to thank <a href="http://scholarlyhtml.org/">Scholarly HTML</a>
+        (you read that right) for blazing the trail perhaps a few years too soon. Particularly,
+        the following people were particularly kind and helpful:
+        <a href="https://twitter.com/ptsefton">Peter Sefton</a>,
+        <a href="https://twitter.com/blahah404">Richard Smith-Unna</a>, and
+        <a href="https://twitter.com/petermurrayrust">Peter Murray-Rust</a>.
+      </p>
+      <p>
+        PLOS has a
+        <a href="http://blogs.plos.org/mfenner/2011/03/19/a-very-brief-history-of-scholarly-html/">short
+        history of Scholarly HTML</a> that is worth reading (and would be worth updating).
+      </p>
+      <p>
+        Dan Brickley was kind enough to drop by the office to chat about our usage of
+        <a href="http://schema.org/">schema.org</a> even though he was tired and hungry. As
+        always, examples involving fish tanks are the most helpful. Dave Cramer shared ideas
+        that we happily stole.
+      </p>
+      <p>
+        Patrick Johnston’s input has been crucial, notably in modeling authoring. We can only
+        hope that getting those details exactly right have not caused him to lose too much
+        sleep.
+      </p>
+      <p>
+        We also received very useful feedback and pointers from: Kjetil Kjernsmo (DAHUT!),
+        Silvio Peroni, Justin Johansson, Alf Eaton, Raniere Silvia, Kaveh Bazargan and Mike
+        Smith. We are very much indebted to the help provided us by Ivan Herman.
+      </p>
+      <p>
+        If we somehow forgot you in this list and you are too gracious to complain, we love you
+        all the same.
+      </p>
+    </section>
+  
+
+<section id="biblio-references"><h2><span>9. </span>References</h2><dl><dt id="ref-NYT">NYT</dt><dd property="schema:citation" typeof="schema:ScholarlyArticle" resource="http://www.scribd.com/doc/224608514/The-Full-New-York-Times-Innovation-Report">
+    <cite property="schema:name"><a href="http://www.scribd.com/doc/224608514/The-Full-New-York-Times-Innovation-Report">The
+      Full New York Times Innovation Report</a></cite>,
+    by
+    <span property="schema:author" typeof="schema:Person">
+      <span property="schema:name">New York Times</span>
+    </span>;
+    <time property="schema:datePublished" datetime="2014-03" datatype="xsd:gYearMonth">2014 Mar</time>.
+  </dd><dt id="ref-HTML">HTML</dt><dd property="schema:citation" typeof="schema:WebPage" resource="http://www.w3.org/TR/html5/">
+    <cite property="schema:name"><a href="http://www.w3.org/TR/html5/">One of the HTML
+    Specifications</a></cite>.
+  </dd><dt id="ref-WAI-ARIA">WAI-ARIA</dt><dd property="schema:citation" typeof="schema:WebPage" resource="https://www.w3.org/TR/wai-aria/complete">
+    <cite property="schema:name"><a href="https://www.w3.org/TR/wai-aria/complete">Accessible Rich
+    Internet Applications (WAI-ARIA) 1.0</a></cite>.
+  </dd><dt id="ref-DPUB-ARIA">DPUB-ARIA</dt><dd property="schema:citation" typeof="schema:WebPage" resource="http://w3c.github.io/aria/aria/dpub.html">
+    <cite property="schema:name"><a href="http://w3c.github.io/aria/aria/dpub.html">Digital
+    Publishing WAI-ARIA Module 1.0</a></cite>.
+  </dd><dt id="ref-RDFa">RDFa</dt><dd property="schema:citation" typeof="schema:WebPage" resource="https://www.w3.org/TR/rdfa-primer/">
+    <cite property="schema:name"><a href="https://www.w3.org/TR/rdfa-primer/">RDFa 1.1
+    Primer</a></cite>.
+  </dd><dt id="ref-schema.org">schema.org</dt><dd property="schema:citation" typeof="schema:WebPage" resource="http://schema.org/">
+    <cite property="schema:name"><a href="http://schema.org/">schema.org</a></cite>.
+  </dd><dt id="ref-CSL">CSL</dt><dd property="schema:citation" typeof="schema:WebPage" resource="http://citationstyles.org/">
+    <cite property="schema:name"><a href="http://citationstyles.org/">Citation Styles
+    Language</a></cite>.
+  </dd></dl></section><veepn-guard-alert><template shadowrootmode="open"><style>html{box-sizing:border-box;text-size-adjust:100%;word-break:normal;-moz-tab-size:4;tab-size:4}*,:before,:after{background-repeat:no-repeat;box-sizing:border-box}:before,:after{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0}hr{overflow:visible;height:0;color:inherit;border:0;border-top:1px solid}details,main{display:block}summary{display:list-item}small{font-size:80%}[hidden]{display:none}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}a{background-color:transparent}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace}pre{font-size:1em}b,strong{font-weight:bolder}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}iframe{border-style:none}input{border-radius:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;-moz-appearance:textfield;appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none;-moz-appearance:none;appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit;color:inherit}optgroup{font-weight:700}button{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit],[role=button]{cursor:pointer}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button;-moz-appearance:button;appearance:button}button,input,select,textarea{background-color:transparent;border-style:none}button:-moz-focusring,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{outline:1px dotted ButtonText}select{-webkit-appearance:none;-moz-appearance:none;appearance:none}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline-width:0}select::-ms-expand{display:none}select::-ms-value{color:currentcolor}legend{border:0;color:inherit;display:table;white-space:normal;max-width:100%}::-webkit-file-upload-button{-webkit-appearance:button;-moz-appearance:button;appearance:button;color:inherit;font:inherit}[disabled]{cursor:default}img{border-style:none}progress{vertical-align:baseline}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled=true]{cursor:default}ul,ol{list-style-type:none}figure{margin:0}.guard-popup{font-family:FigtreeVF,sans-serif;position:fixed;z-index:2147483638;top:8px;left:24px;overflow:visible;color:#222e3a;background-color:#fff;max-width:416px;width:calc(100% - 48px);border-radius:16px;box-shadow:0 4px 20px #00000040;padding:24px}.guard-popup__header{display:flex;justify-content:space-between;align-items:center;column-gap:16px;margin-bottom:24px}.guard-popup__close{display:flex;align-items:center;justify-content:center;width:24px;height:24px;opacity:.7}.guard-popup__img{line-height:0;margin-bottom:24px}.guard-popup__img img{width:100%;aspect-ratio:368/142;object-fit:cover;border-radius:12px;overflow:hidden}.guard-popup__title{font-size:24px;line-height:32px;margin-bottom:8px}.guard-popup__description{font-size:20px;line-height:28px;font-weight:500;color:#4a5764;margin-bottom:28px}.guard-popup__actions{display:flex;justify-content:flex-end;column-gap:16px}.guard-popup__btn{display:flex;align-items:center;justify-content:center;padding:8px 16px;border-radius:5px;font-size:16px;line-height:24px;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(180deg,#5695fd,#1554ff)}</style></template><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></veepn-guard-alert><veepn-lock-screen><template shadowrootmode="open"><style>html{box-sizing:border-box;text-size-adjust:100%;word-break:normal;-moz-tab-size:4;tab-size:4}*,:before,:after{background-repeat:no-repeat;box-sizing:border-box}:before,:after{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0}hr{overflow:visible;height:0;color:inherit;border:0;border-top:1px solid}details,main{display:block}summary{display:list-item}small{font-size:80%}[hidden]{display:none!important}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}a{background-color:transparent}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace}pre{font-size:1em}b,strong{font-weight:bolder}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}iframe{border-style:none}input{border-radius:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;-moz-appearance:textfield;appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none;-moz-appearance:none;appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit;color:inherit}optgroup{font-weight:700}button{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit],[role=button]{cursor:pointer}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button;-moz-appearance:button;appearance:button}button,input,select,textarea{background-color:transparent;border-style:none}button:-moz-focusring,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{outline:1px dotted ButtonText}select{-webkit-appearance:none;-moz-appearance:none;appearance:none}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline-width:0}select::-ms-expand{display:none}select::-ms-value{color:currentcolor}legend{border:0;color:inherit;display:table;white-space:normal;max-width:100%}::-webkit-file-upload-button{-webkit-appearance:button;-moz-appearance:button;appearance:button;color:inherit;font:inherit}[disabled]{cursor:default}img{border-style:none}progress{vertical-align:baseline}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled=true]{cursor:default}ul,ol{list-style-type:none}figure{margin:0}.lock-screen{font-family:FigtreeVF,sans-serif;letter-spacing:normal;position:fixed;z-index:2147483638;top:0;right:0;bottom:0;left:0;padding:32px 40px;color:#222e3a;background-color:#fdfdfd;display:flex;flex-direction:column;row-gap:12px;overflow:auto;background-image:radial-gradient(circle at 0% 0%,#e6fffdcc,#e6fffd00 50%),radial-gradient(circle at 100% 0%,#ebfffecc,#ebfffe00 50%),radial-gradient(circle at 100% 100%,#f0f5ffcc,#f0f5ff00 50%),radial-gradient(circle at 0% 100%,#f2f2ffcc,#f2f2ff00 50%),radial-gradient(circle at 50% 50%,#fff,#fffc,#f5f5ff66,#f0f0ff33,#f0f0ff00),linear-gradient(to bottom right,#e6fffd,#f2f2ff);background-size:100% 100%;background-repeat:no-repeat}.lock-screen__header{display:flex;align-items:center;justify-content:space-between}.lock-screen__logo{display:inline-flex;align-items:center;column-gap:12px;font-size:18px;font-weight:600}.lock-screen__close{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background-color:#222e3a1a}.lock-screen__main{flex-grow:1;align-content:center}.lock-screen__container{max-width:1120px;margin-inline:auto;display:flex;align-items:center;gap:24px}@media (width < 972px){.lock-screen__container{flex-direction:column}}.lock-screen__timer{display:flex;align-items:center;justify-content:center;width:100%}.lock-screen__content{width:100%}.lock-screen__title{font-size:48px;font-weight:700;line-height:56px;margin-bottom:16px}.lock-screen__description{font-size:18px;line-height:32px;margin-bottom:24px}.lock-screen__actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.lock-screen__action{height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;text-align:center;padding:8px 24px}.upgrade-btn{color:#fff;background:linear-gradient(180deg,#20df9e,#13cf8f)}.skip-btn{color:#3066ff;border-width:1px;border-style:solid;border-color:#3066ff;position:relative}.skip-btn__tooltip{font-size:14px;line-height:24px;font-weight:400;position:absolute;z-index:1;left:50%;top:calc(100% + 18px);padding:8px 12px;color:#fff;border:1px solid #4a5764;background-color:#222e3a;border-radius:8px;width:max-content;pointer-events:none;animation:slide-in .6s ease-in-out forwards}@keyframes slide-in{0%{opacity:0;transform:translate(-50%,-100%)}to{opacity:1;transform:translate(-50%)}}.skip-btn__tooltip:after{content:"";display:block;position:absolute;z-index:1;top:-8px;left:50%;width:0;height:0;border-style:solid;border-width:0 8px 8px;border-color:transparent transparent #222e3a;transform:translate(-6px)}.skip-btn__icon{display:none}.skip-btn:disabled{cursor:not-allowed}.skip-btn:disabled .skip-btn__tooltip,.skip-btn:disabled .skip-btn__text{display:none}.skip-btn:disabled .skip-btn__icon{display:initial;animation:tick-tock .8s steps(8,end) infinite}@keyframes tick-tock{to{transform:rotate(360deg)}}.timer{position:relative;max-width:422px;width:100%;aspect-ratio:1/1;border-radius:50%;background-color:#fff;box-shadow:0 0 40px #2b374114;display:flex;align-items:center;justify-content:center;pointer-events:none;-webkit-user-select:none;user-select:none}.timer__circle-backward{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;max-width:100%;height:auto;opacity:.4}.timer__circle-forward{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);z-index:1;max-width:100%;height:auto;animation:sector 5s linear forwards}.timer__fire-icon{position:absolute;top:22%;left:50%;transform:translate(-50%);z-index:2}.timer__text{font-size:clamp(18px,10vw,88px);letter-spacing:-1px;text-align:center;font-variant-numeric:tabular-nums;position:relative;z-index:3}.timer--finished .timer__text{color:#98a0a9}.timer--finished .timer__circle-forward{display:none}@keyframes sector{0%{clip-path:polygon(50% 50%,0% 2%,100% 0%,100% 100%,0% 100%,0% 2%)}25%{clip-path:polygon(50% 50%,0% 2%,100% 0%,100% 100%,0% 100%,0% 100%)}25.000001%{clip-path:polygon(50% 50%,0% 2%,100% 0%,100% 100%,0% 100%)}50%{clip-path:polygon(50% 50%,0% 2%,100% 0%,100% 100%,100% 100%)}50.000001%{clip-path:polygon(50% 50%,0% 2%,100% 0%,100% 100%)}75%{clip-path:polygon(50% 50%,0% 2%,100% 0%,100% 0%)}75.000001%{clip-path:polygon(50% 50%,0% 2%,100% 0%)}to{clip-path:polygon(50% 50%,0% 2%,0% 0%)}}@media (prefers-color-scheme: dark){.lock-screen{color:#fff;background-image:radial-gradient(circle at 0% 0%,#2f4f4fcc,#2f4f4f00 50%),radial-gradient(circle at 100% 0%,#193042cc,#19304200 50%),radial-gradient(circle at 100% 100%,#1c3041cc,#1c304100 50%),radial-gradient(circle at 0% 100%,#1b263bcc,#1b263b00 50%),radial-gradient(circle at 50% 50%,#141e28,#141e28cc,#1b263b66,#1c304133,#1c304100),linear-gradient(to bottom right,#2f4f4f,#1b263b)}.lock-screen__close{background-color:#ffffff1a}.skip-btn{color:#fff;border-color:#fff}.skip-btn__tooltip{color:#222e3a;border:1px solid #f5f6f7;background-color:#fff}.skip-btn__tooltip:after{border-color:transparent transparent #fff}.timer{background-color:#191b25}.timer__circle-backward{opacity:1}.timer--finished .timer__text{color:#5c6977}}</style></template><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></veepn-lock-screen></body><div id="coplmfnphahpcknbchcehdikbdieognn" style="all: initial; font-size: 16px !important"><template shadowrootmode="open"><link rel="preconnect" href="https://fonts.googleapis.com/"><link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;family=Roboto:wght@100;200;300;400;500;600;700;800;900&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.14 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[multiple],[type=date],[type=datetime-local],[type=email],[type=month],[type=number],[type=password],[type=search],[type=tel],[type=text],[type=time],[type=url],[type=week],input:where(:not([type])),select,textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0;padding:.5rem .75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000}[multiple]:focus,[type=date]:focus,[type=datetime-local]:focus,[type=email]:focus,[type=month]:focus,[type=number]:focus,[type=password]:focus,[type=search]:focus,[type=tel]:focus,[type=text]:focus,[type=time]:focus,[type=url]:focus,[type=week]:focus,input:where(:not([type])):focus,select:focus,textarea:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow);border-color:#2563eb}input::-moz-placeholder,textarea::-moz-placeholder{color:#6b7280;opacity:1}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-meridiem-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-year-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3E%3Cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27m6 8 4 4 4-4%27/%3E%3C/svg%3E");background-position:right .5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:none;background-position:0 0;background-repeat:unset;background-size:initial;padding-right:.75rem;-webkit-print-color-adjust:unset;print-color-adjust:unset}[type=checkbox],[type=radio]{-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type=checkbox]{border-radius:0}[type=radio]{border-radius:100%}[type=checkbox]:focus,[type=radio]:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}[type=checkbox]:checked,[type=radio]:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}[type=checkbox]:checked{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27%23fff%27 viewBox=%270 0 16 16%27%3E%3Cpath d=%27M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0%27/%3E%3C/svg%3E")}@media (forced-colors:active) {[type=checkbox]:checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}[type=radio]:checked{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27%23fff%27 viewBox=%270 0 16 16%27%3E%3Ccircle cx=%278%27 cy=%278%27 r=%273%27/%3E%3C/svg%3E")}@media (forced-colors:active) {[type=radio]:checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}[type=checkbox]:checked:focus,[type=checkbox]:checked:hover,[type=radio]:checked:focus,[type=radio]:checked:hover{border-color:transparent;background-color:currentColor}[type=checkbox]:indeterminate{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 16 16%27%3E%3Cpath stroke=%27%23fff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27M4 8h8%27/%3E%3C/svg%3E");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}@media (forced-colors:active) {[type=checkbox]:indeterminate{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}[type=checkbox]:indeterminate:focus,[type=checkbox]:indeterminate:hover{border-color:transparent;background-color:currentColor}[type=file]{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type=file]:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}body{font-size:100%!important;-webkit-font-smoothing:antialiased!important;-moz-osx-font-smoothing:grayscale!important}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}#app-container{height:100%!important;width:100%!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.pointer-events-none{pointer-events:none}.\!visible{visibility:visible!important}.visible{visibility:visible}.collapse{visibility:collapse}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-x-0{left:0;right:0}.inset-y-0{top:0;bottom:0}.-left-1{left:-4px}.bottom-0{bottom:0}.left-0{left:0}.left-1{left:4px}.left-1\.5{left:6px}.right-0{right:0}.right-1{right:4px}.right-1\.5{right:6px}.right-2{right:8px}.right-2\.5{right:10px}.right-3{right:12px}.right-4{right:16px}.right-5{right:20px}.top-0{top:0}.top-1{top:4px}.top-1\/2{top:50%}.top-1\/3{top:33.333333%}.top-2{top:8px}.top-2\.5{top:10px}.top-3{top:12px}.top-36{top:144px}.top-4{top:16px}.\!z-max{z-index:9999!important}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.z-max{z-index:9999}.z-medium{z-index:9000}.col-span-1{grid-column:span 1/span 1}.col-span-2{grid-column:span 2/span 2}.col-span-3{grid-column:span 3/span 3}.col-span-6{grid-column:span 6/span 6}.col-span-full{grid-column:1/-1}.m-0{margin:0}.mx-2{margin-left:8px;margin-right:8px}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:8px;margin-bottom:8px}.my-3{margin-top:12px;margin-bottom:12px}.-mr-\[14px\]{margin-right:-14px}.-mt-0\.5{margin-top:-2px}.-mt-2{margin-top:-8px}.mb-1{margin-bottom:4px}.mb-2{margin-bottom:8px}.mb-24{margin-bottom:96px}.mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}.mb-\[3px\]{margin-bottom:3px}.ml-0\.5{margin-left:2px}.ml-1{margin-left:4px}.ml-2{margin-left:8px}.ml-4{margin-left:16px}.ml-\[3px\]{margin-left:3px}.ml-auto{margin-left:auto}.mr-1{margin-right:4px}.mr-2{margin-right:8px}.mr-3{margin-right:12px}.ms-2{margin-inline-start:8px}.mt-0\.5{margin-top:2px}.mt-1{margin-top:4px}.mt-1\.5{margin-top:6px}.mt-2{margin-top:8px}.mt-24{margin-top:96px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mt-6{margin-top:24px}.mt-8{margin-top:32px}.mt-px{margin-top:1px}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.aspect-\[16\/8\]{aspect-ratio:16/8}.aspect-\[4\/3\]{aspect-ratio:4/3}.aspect-square{aspect-ratio:1/1}.aspect-video{aspect-ratio:16/9}.h-1{height:4px}.h-1\.5{height:6px}.h-10{height:40px}.h-12{height:48px}.h-14{height:56px}.h-16{height:64px}.h-20{height:80px}.h-3{height:12px}.h-3\.5{height:14px}.h-32{height:128px}.h-4{height:16px}.h-5{height:20px}.h-6{height:24px}.h-7{height:28px}.h-8{height:32px}.h-9{height:36px}.h-\[250px\]{height:250px}.h-\[80vh\]{height:80vh}.h-full{height:100%}.h-max{height:-moz-max-content;height:max-content}.max-h-60{max-height:240px}.max-h-96{max-height:384px}.max-h-\[250px\]{max-height:250px}.max-h-\[520px\]{max-height:520px}.min-h-\[180px\]{min-height:180px}.min-h-\[320px\]{min-height:320px}.w-10{width:40px}.w-12{width:48px}.w-14{width:56px}.w-16{width:64px}.w-24{width:96px}.w-28{width:112px}.w-3{width:12px}.w-3\.5{width:14px}.w-36{width:144px}.w-4{width:16px}.w-44{width:176px}.w-5{width:20px}.w-52{width:208px}.w-6{width:24px}.w-64{width:256px}.w-7{width:28px}.w-8{width:32px}.w-9{width:36px}.w-\[0\%\]{width:0}.w-\[800px\]{width:800px}.w-full{width:100%}.w-max{width:-moz-max-content;width:max-content}.max-w-\[240px\]{max-width:240px}.max-w-\[300px\]{max-width:300px}.max-w-lg{max-width:512px}.max-w-md{max-width:448px}.max-w-sm{max-width:384px}.max-w-xs{max-width:320px}.flex-1{flex:1 1 0%}.flex-shrink-0,.shrink-0{flex-shrink:0}.grow{flex-grow:1}.table-auto{table-layout:auto}.origin-top-left{transform-origin:top left}.origin-top-right{transform-origin:top right}.-translate-x-full{--tw-translate-x:-100%}.-translate-x-full,.-translate-y-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%}.translate-x-1\/2{--tw-translate-x:50%}.translate-x-1\/2,.translate-y-0{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-0{--tw-translate-y:0}.translate-y-1\/2{--tw-translate-y:50%}.translate-y-1\/2,.translate-y-full{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-full{--tw-translate-y:100%}.scale-100{--tw-scale-x:1;--tw-scale-y:1}.scale-100,.scale-95{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-95{--tw-scale-x:.95;--tw-scale-y:.95}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%,to{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0,0,.2,1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}@keyframes spin{to{transform:rotate(1turn)}}.animate-spin{animation:spin 1s linear infinite}.cursor-not-allowed{cursor:not-allowed}.cursor-pointer{cursor:pointer}.cursor-wait{cursor:wait}.list-inside{list-style-position:inside}.list-decimal{list-style-type:decimal}.grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.flex-row-reverse{flex-direction:row-reverse}.flex-col{flex-direction:column}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-evenly{justify-content:space-evenly}.gap-1{gap:4px}.gap-2{gap:8px}.gap-4{gap:16px}.gap-6{gap:24px}.gap-x-4{-moz-column-gap:16px;column-gap:16px}.gap-y-6{row-gap:24px}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(4px*var(--tw-space-x-reverse));margin-left:calc(4px*(1 - var(--tw-space-x-reverse)))}.space-x-1\.5>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(6px*var(--tw-space-x-reverse));margin-left:calc(6px*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(8px*var(--tw-space-x-reverse));margin-left:calc(8px*(1 - var(--tw-space-x-reverse)))}.space-x-4>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(16px*var(--tw-space-x-reverse));margin-left:calc(16px*(1 - var(--tw-space-x-reverse)))}.space-x-6>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(24px*var(--tw-space-x-reverse));margin-left:calc(24px*(1 - var(--tw-space-x-reverse)))}.space-x-8>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(32px*var(--tw-space-x-reverse));margin-left:calc(32px*(1 - var(--tw-space-x-reverse)))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(4px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(4px*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(6px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(6px*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(8px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(8px*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(12px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(12px*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(16px*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(16px*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-gray-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(243 244 246/var(--tw-divide-opacity))}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overflow-y-hidden{overflow-y:hidden}.overflow-y-scroll{overflow-y:scroll}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:4px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:8px}.rounded-md{border-radius:6px}.rounded-sm{border-radius:2px}.rounded-l{border-top-left-radius:4px;border-bottom-left-radius:4px}.border{border-width:1px}.border-y{border-top-width:1px}.border-b,.border-y{border-bottom-width:1px}.border-b-4{border-bottom-width:4px}.border-t{border-top-width:1px}.border-solid{border-style:solid}.border-none{border-style:none}.border-brand{--tw-border-opacity:1;border-color:rgb(188 32 144/var(--tw-border-opacity))}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246/var(--tw-border-opacity))}.border-gray-100\/50{border-color:rgba(243,244,246,.5)}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235/var(--tw-border-opacity))}.border-gray-200\/50{border-color:rgba(229,231,235,.5)}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219/var(--tw-border-opacity))}.border-red-500{--tw-border-opacity:1;border-color:rgb(239 68 68/var(--tw-border-opacity))}.border-red-600{--tw-border-opacity:1;border-color:rgb(220 38 38/var(--tw-border-opacity))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249/var(--tw-border-opacity))}.border-zinc-100{--tw-border-opacity:1;border-color:rgb(244 244 245/var(--tw-border-opacity))}.bg-\[\#232935\]{--tw-bg-opacity:1;background-color:rgb(35 41 53/var(--tw-bg-opacity))}.bg-\[\#F4F5FF\]{--tw-bg-opacity:1;background-color:rgb(244 245 255/var(--tw-bg-opacity))}.bg-\[\#d2e3fc\]{--tw-bg-opacity:1;background-color:rgb(210 227 252/var(--tw-bg-opacity))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity))}.bg-black\/50{background-color:rgba(0,0,0,.5)}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity))}.bg-brand{--tw-bg-opacity:1;background-color:rgb(188 32 144/var(--tw-bg-opacity))}.bg-brand\/10{background-color:rgba(188,32,144,.1)}.bg-brand\/90{background-color:rgba(188,32,144,.9)}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235/var(--tw-bg-opacity))}.bg-gray-300{--tw-bg-opacity:1;background-color:rgb(209 213 219/var(--tw-bg-opacity))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity))}.bg-gray-50\/10{background-color:rgba(249,250,251,.1)}.bg-gray-50\/70{background-color:rgba(249,250,251,.7)}.bg-gray-500{--tw-bg-opacity:1;background-color:rgb(107 114 128/var(--tw-bg-opacity))}.bg-gray-600{--tw-bg-opacity:1;background-color:rgb(75 85 99/var(--tw-bg-opacity))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231/var(--tw-bg-opacity))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94/var(--tw-bg-opacity))}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255/var(--tw-bg-opacity))}.bg-red-100{--tw-bg-opacity:1;background-color:rgb(254 226 226/var(--tw-bg-opacity))}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68/var(--tw-bg-opacity))}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity))}.bg-white\/60{background-color:hsla(0,0%,100%,.6)}.bg-white\/90{background-color:hsla(0,0%,100%,.9)}.bg-zinc-100{--tw-bg-opacity:1;background-color:rgb(244 244 245/var(--tw-bg-opacity))}.bg-zinc-50\/80{background-color:hsla(0,0%,98%,.8)}.bg-opacity-10{--tw-bg-opacity:0.1}.bg-opacity-50{--tw-bg-opacity:0.5}.bg-opacity-70{--tw-bg-opacity:0.7}.bg-gradient-to-t{background-image:linear-gradient(to top,var(--tw-gradient-stops))}.from-white{--tw-gradient-from:#fff var(--tw-gradient-from-position);--tw-gradient-to:hsla(0,0%,100%,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-gray-700{--tw-gradient-to:#374151 var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.bg-no-repeat{background-repeat:no-repeat}.fill-brand{fill:#bc2090}.object-contain{-o-object-fit:contain;object-fit:contain}.object-cover{-o-object-fit:cover;object-fit:cover}.object-center{-o-object-position:center;object-position:center}.p-0{padding:0}.p-1\.5{padding:6px}.p-2{padding:8px}.p-3{padding:12px}.p-4{padding:16px}.p-5{padding:20px}.p-6{padding:24px}.px-1{padding-left:4px;padding-right:4px}.px-1\.5{padding-left:6px;padding-right:6px}.px-2{padding-left:8px;padding-right:8px}.px-2\.5{padding-left:10px;padding-right:10px}.px-3{padding-left:12px;padding-right:12px}.px-4{padding-left:16px;padding-right:16px}.px-5{padding-left:20px;padding-right:20px}.px-6{padding-left:24px;padding-right:24px}.px-8{padding-left:32px;padding-right:32px}.py-0\.5{padding-top:2px;padding-bottom:2px}.py-1{padding-top:4px;padding-bottom:4px}.py-1\.5{padding-top:6px;padding-bottom:6px}.py-2{padding-top:8px;padding-bottom:8px}.py-2\.5{padding-top:10px;padding-bottom:10px}.py-3{padding-top:12px;padding-bottom:12px}.py-4{padding-top:16px;padding-bottom:16px}.py-6{padding-top:24px;padding-bottom:24px}.py-\[2px\]{padding-top:2px;padding-bottom:2px}.pb-1{padding-bottom:4px}.pb-2{padding-bottom:8px}.pb-3{padding-bottom:12px}.pb-4{padding-bottom:16px}.pb-5{padding-bottom:20px}.pb-6{padding-bottom:24px}.pl-4{padding-left:16px}.pl-8{padding-left:32px}.pr-12{padding-right:48px}.pr-3{padding-right:12px}.pr-4{padding-right:16px}.pr-8{padding-right:32px}.pt-1{padding-top:4px}.pt-2{padding-top:8px}.pt-3{padding-top:12px}.pt-4{padding-top:16px}.pt-6{padding-top:24px}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.\!font-google-sans{font-family:Google Sans,sans-serif!important}.\!font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji!important}.font-google-sans{font-family:Google Sans,sans-serif}.font-inter{font-family:Inter,sans-serif}.font-poppins{font-family:Poppins,sans-serif}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-3xl{font-size:30px;line-height:36px}.text-5xl{font-size:48px;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[12px\]{font-size:12px}.text-\[13px\]{font-size:13px}.text-\[55px\]{font-size:55px}.text-\[8px\]{font-size:8px}.text-base{font-size:16px;line-height:24px}.text-lg{font-size:18px;line-height:28px}.text-sm{font-size:14px;line-height:20px}.text-xl{font-size:20px;line-height:28px}.text-xs{font-size:12px;line-height:16px}.font-\[500\]{font-weight:500}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-extralight{font-weight:200}.font-light{font-weight:300}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.font-thin{font-weight:100}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-4{line-height:16px}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-\[0\.25px\]{letter-spacing:.25px}.tracking-tight{letter-spacing:-.025em}.tracking-tighter{letter-spacing:-.05em}.text-\[\#1a73e8\]{--tw-text-opacity:1;color:rgb(26 115 232/var(--tw-text-opacity))}.text-\[\#202124\]{--tw-text-opacity:1;color:rgb(32 33 36/var(--tw-text-opacity))}.text-\[\#232529\]{--tw-text-opacity:1;color:rgb(35 37 41/var(--tw-text-opacity))}.text-\[\#232935\]{--tw-text-opacity:1;color:rgb(35 41 53/var(--tw-text-opacity))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0/var(--tw-text-opacity))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity))}.text-brand{--tw-text-opacity:1;color:rgb(188 32 144/var(--tw-text-opacity))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246/var(--tw-text-opacity))}.text-gray-200{--tw-text-opacity:1;color:rgb(229 231 235/var(--tw-text-opacity))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175/var(--tw-text-opacity))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128/var(--tw-text-opacity))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99/var(--tw-text-opacity))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81/var(--tw-text-opacity))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55/var(--tw-text-opacity))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39/var(--tw-text-opacity))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94/var(--tw-text-opacity))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74/var(--tw-text-opacity))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61/var(--tw-text-opacity))}.text-green-800{--tw-text-opacity:1;color:rgb(22 101 52/var(--tw-text-opacity))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68/var(--tw-text-opacity))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91/var(--tw-text-opacity))}.text-zinc-700{--tw-text-opacity:1;color:rgb(63 63 70/var(--tw-text-opacity))}.underline{text-decoration-line:underline}.line-through{text-decoration-line:line-through}.decoration-zinc-600{text-decoration-color:#52525b}.underline-offset-2{text-underline-offset:2px}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-100{opacity:1}.opacity-50{opacity:.5}.opacity-60{opacity:.6}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-lg{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.shadow-sm,.shadow-xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color)}.shadow-gray-500\/40{--tw-shadow-color:hsla(220,9%,46%,.4);--tw-shadow:var(--tw-shadow-colored)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring-1,.ring-2{box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.ring-2{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring-inset{--tw-ring-inset:inset}.ring-black{--tw-ring-opacity:1;--tw-ring-color:rgb(0 0 0/var(--tw-ring-opacity))}.ring-blue-200{--tw-ring-opacity:1;--tw-ring-color:rgb(191 219 254/var(--tw-ring-opacity))}.ring-brand{--tw-ring-opacity:1;--tw-ring-color:rgb(188 32 144/var(--tw-ring-opacity))}.ring-brand\/50{--tw-ring-color:rgba(188,32,144,.5)}.ring-brand\/80{--tw-ring-color:rgba(188,32,144,.8)}.ring-gray-200{--tw-ring-opacity:1;--tw-ring-color:rgb(229 231 235/var(--tw-ring-opacity))}.ring-gray-300{--tw-ring-opacity:1;--tw-ring-color:rgb(209 213 219/var(--tw-ring-opacity))}.ring-gray-600{--tw-ring-opacity:1;--tw-ring-color:rgb(75 85 99/var(--tw-ring-opacity))}.ring-zinc-300{--tw-ring-opacity:1;--tw-ring-color:rgb(212 212 216/var(--tw-ring-opacity))}.ring-opacity-10{--tw-ring-opacity:0.1}.ring-opacity-20{--tw-ring-opacity:0.2}.ring-opacity-5{--tw-ring-opacity:0.05}.ring-opacity-60{--tw-ring-opacity:0.6}.ring-offset-0{--tw-ring-offset-width:0px}.ring-offset-1{--tw-ring-offset-width:1px}.ring-offset-2{--tw-ring-offset-width:2px}.ring-offset-gray-50{--tw-ring-offset-color:#f9fafb}.blur-sm{--tw-blur:blur(4px)}.blur-sm,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-blur-\[96px\]{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-\[96px\]{--tw-backdrop-blur:blur(96px)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-md,.backdrop-blur-sm{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-100{transition-duration:.1s}.duration-200{transition-duration:.2s}.duration-300{transition-duration:.3s}.duration-75{transition-duration:75ms}.ease-in{transition-timing-function:cubic-bezier(.4,0,1,1)}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.ease-out{transition-timing-function:cubic-bezier(0,0,.2,1)}.line-clamp-1{-webkit-line-clamp:1}.line-clamp-1,.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical}.line-clamp-2{-webkit-line-clamp:2}.after\:mr-4:after{content:var(--tw-content);margin-right:16px}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05}.hover\:scale-105:hover,.hover\:scale-\[1\.02\]:hover{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-\[1\.02\]:hover{--tw-scale-x:1.02;--tw-scale-y:1.02}.hover\:border-brand:hover{--tw-border-opacity:1;border-color:rgb(188 32 144/var(--tw-border-opacity))}.hover\:bg-\[\#1967d2\]\/30:hover{background-color:rgba(25,103,210,.3)}.hover\:bg-black:hover{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity))}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216/var(--tw-bg-opacity))}.hover\:bg-brand:hover{--tw-bg-opacity:1;background-color:rgb(188 32 144/var(--tw-bg-opacity))}.hover\:bg-brand\/80:hover{background-color:rgba(188,32,144,.8)}.hover\:bg-brand\/90:hover{background-color:rgba(188,32,144,.9)}.hover\:bg-brand\/95:hover{background-color:rgba(188,32,144,.95)}.hover\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity))}.hover\:bg-gray-200:hover{--tw-bg-opacity:1;background-color:rgb(229 231 235/var(--tw-bg-opacity))}.hover\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity))}.hover\:bg-gray-50\/30:hover{background-color:rgba(249,250,251,.3)}.hover\:bg-purple-700:hover{--tw-bg-opacity:1;background-color:rgb(126 34 206/var(--tw-bg-opacity))}.hover\:bg-white\/95:hover{background-color:hsla(0,0%,100%,.95)}.hover\:bg-opacity-80:hover{--tw-bg-opacity:0.8}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0/var(--tw-text-opacity))}.hover\:text-gray-600:hover{--tw-text-opacity:1;color:rgb(75 85 99/var(--tw-text-opacity))}.hover\:text-gray-700:hover{--tw-text-opacity:1;color:rgb(55 65 81/var(--tw-text-opacity))}.hover\:text-gray-800:hover{--tw-text-opacity:1;color:rgb(31 41 55/var(--tw-text-opacity))}.hover\:text-red-500:hover{--tw-text-opacity:1;color:rgb(239 68 68/var(--tw-text-opacity))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.hover\:text-zinc-700:hover{--tw-text-opacity:1;color:rgb(63 63 70/var(--tw-text-opacity))}.hover\:text-zinc-800:hover{--tw-text-opacity:1;color:rgb(39 39 42/var(--tw-text-opacity))}.hover\:underline:hover{text-decoration-line:underline}.hover\:shadow:hover{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.hover\:ring-brand:hover{--tw-ring-opacity:1;--tw-ring-color:rgb(188 32 144/var(--tw-ring-opacity))}.focus\:border-brand:focus{--tw-border-opacity:1;border-color:rgb(188 32 144/var(--tw-border-opacity))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.focus\:ring-1:focus,.focus\:ring-2:focus{box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.focus\:ring-\[\#1967d2\]:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(25 103 210/var(--tw-ring-opacity))}.focus\:ring-blue-600\/50:focus{--tw-ring-color:rgba(37,99,235,.5)}.focus\:ring-brand:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(188 32 144/var(--tw-ring-opacity))}.focus\:ring-opacity-80:focus{--tw-ring-opacity:0.8}.focus\:ring-offset-1:focus{--tw-ring-offset-width:1px}.focus\:ring-offset-2:focus{--tw-ring-offset-width:2px}.focus\:ring-offset-white:focus{--tw-ring-offset-color:#fff}.focus-visible\:border-brand:focus-visible{--tw-border-opacity:1;border-color:rgb(188 32 144/var(--tw-border-opacity))}.focus-visible\:ring-1:focus-visible{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus-visible\:ring-2:focus-visible{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus-visible\:ring-black\/60:focus-visible{--tw-ring-color:rgba(0,0,0,.6)}.focus-visible\:ring-brand:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(188 32 144/var(--tw-ring-opacity))}.focus-visible\:ring-opacity-60:focus-visible{--tw-ring-opacity:0.6}.focus-visible\:ring-offset-2:focus-visible{--tw-ring-offset-width:2px}.disabled\:pointer-events-none:disabled{pointer-events:none}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:cursor-wait:disabled{cursor:wait}.disabled\:opacity-50:disabled{opacity:.5}.disabled\:grayscale:disabled{--tw-grayscale:grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.group:hover .group-hover\:text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81/var(--tw-text-opacity))}@media (min-width:640px){.sm\:ml-3{margin-left:12px}.sm\:mt-0{margin-top:0}.sm\:w-auto{width:auto}}@media (prefers-color-scheme:dark){.dark\:text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99/var(--tw-text-opacity))}}</style></template></div></html>
