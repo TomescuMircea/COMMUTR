@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Documentație HCI - Commutr</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+  </head>
+  <body prefix="schema: http://schema.org">
+    <header>
+      <div class="banner">
+        <img src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+        <div class="status">Community Draft</div>
+      </div>
+    <h1>Commutr - Documentație Proiect</h1>
+    </header>
+    <!--
+      XXX
+      - check refs
+      - the math example has too much maths
+      - bring back some of the old style
+      - make semantics, validation, processing sub-sections of each structural element
+      - have a section before that for general constructs
+        - explain why use RDFa
+        - explain our patterns: RDFa, roles
+      - figure captions need to get set throughout
+      - dedication? see doc-dedication
+      - syntactic constraints (prefix)
+      - needs more sthenurines
+      - examples of everything
+      - some notes on using Semantic CSS
+      - needs more RDFa in the spec itself
+    -->
+    <div role="contentinfo">
+      <dl>
+        <dt>Authors</dt>
+        <dd>
+          <p>Burcă Alina, Tomescu Mircea, Andrei Stoleru</p>
+        </dd>
+        
+       
+    </div>
+  
+    <!-- INTRODUCTION -->
+<section id="introduction" role="doc-introduction">
+  <h2>Introducere</h2>
+  <p>
+Commutr este o aplicație dezvoltată pentru a îmbunătăți experiența navetei zilnice a angajaților corporatiști. În contextul unei călătorii de două ore cu trenul, aplicația oferă acces rapid și organizat la conținut media variat — precum muzică, videoclipuri, jocuri, rețele sociale și hărți — direct de pe telefonul mobil.
+Mai mult decât atât, aplicația este extinsă cu o componentă pentru ochelari MR (Mixed Reality), care suprapune interfața digitală peste mediul real, transformând trenul într-un spațiu interactiv personalizat. Utilizatorul poate astfel naviga prin conținut într-un mod intuitiv și imersiv, reducând percepția timpului și îmbunătățind starea de bine pe durata călătoriei.
+Această soluție duală — aplicație mobilă + experiență MR — aduce împreună funcționalitatea, accesibilitatea și inovația, oferind un exemplu concret de design centrat pe utilizator în contextul interacțiunii om-calculator.  
+</p>
+</section>
+
+<!-- STRUCTURA devine secțiunea 2 -->
+<section id="structure">
+  <h2>Structura</h2>
+  <section id="Root">
+    <h3>Modele de Interacțiune</h3>
+    <h4>Navigare</h4>
+    <p>Bottom bar navigation - o bară de navigație fixă în partea de jos a ecranului, prezentă pe toate ecranele principale (Videos, Search, Settings), ușor de accesat în timpul utilizării cu o singură mână. </p>
+    <p>Dashboard layout - prima pagină oferă un panou de control cu acces rapid la categorii media (Music, Videos, Games etc.), într-un format vizual clar.</p>
+
+    <h4>Layout</h4>
+    <p>Card și tiles - fiecare categorie media este reprezentată ca un "card" vizuală cu icon și imagine, facilitând recunoașterea rapidă și interacțiunea intuitivă. </p>
+
+    <h4>Acțiuni și comenzi</h4>
+    <p>Tap — acțiunea principală de interacțiune este atingerea (tap) pe carduri și butoane.</p>
+
+    <h4>Componenta Mixed Reality</h4>
+      <p>Componenta Mixed Reality a aplicației Commutr integrează elemente AR precum ferestre virtuale suprapuse peste mediul real din mijlocul de transport, butoane interactive și text informativ ancorat spațial. Interacțiunea se realizează prin gesturi simple (air tap sau gaze), fără marcatori AR expliciți. Această abordare oferă o experiență informativă și intuitivă, ideală pentru contextul de utilizare hands-free în timpul navetei</p>
+
+  </section>
+  <section id="article">
+    <h3>Decizii de Design</h3>
+    <p>Designul aplicației Commutr a fost ghidat de principiile simplității, clarității vizuale și accesibilității în contextul utilizării mobile și în mișcare (ex: în tren). Iată principalele decizii de design:</p>
+    <ul>
+      <li><strong>Dark UI</strong>: am optat pentru o temă întunecată pentru a reduce oboseala vizuală în condiții de lumină scăzută, tipice navetei cu autobuzul, tramvaiul sau metroul. Fundalurile închise oferă contrast ridicat față de text și iconuri, facilitând citirea și interacțiunea.</li>
+      <li><strong>Layout vertical cu carduri</strong>: structura ecranelor este simplă și clară, folosind un layout vertical cu butoane sub formă de carduri mari. Acest format permite recunoașterea rapidă a conținutului, fiind optimizat pentru ecrane tactile și utilizare cu o singură mână. </li>
+      <li><strong>Efecte vizuale</strong>: butoanele au un efect subtil de radial gradient și umbră, oferind senzația de profunzime și un aspect tactil, ceea ce ajută utilizatorii să identifice ușor zonele interactive.</li>
+      <li><strong>Font si iconuri</strong>: am folosit Roboto Flex, un font clar și scalabil, potrivit pentru ecrane de dimensiuni variate. Iconurile sunt monocrome și plate, menținând un stil coerent și minimalist în întreaga aplicație.</li>
+      <li><strong>MR UI suprapus</strong>: în componenta MR, interfața este suprapusă peste mediul real sub formă de panouri virtuale. Designul a fost simplificat pentru a evita aglomerarea vizuală și pentru a păstra lizibilitatea în context AR.</li>
+      <li><strong>Navigație persistentă</strong>: bara de navigare de jos (bottom tab bar) este prezentă constant pentru acces rapid la secțiuni esențiale. Este ușor de atins și în poziție confortabilă pentru utilizare frecventă.</li>
+  </section>
+  <section id="hunk">
+    <h3>Manual de utilizare</h3>
+    <h4>Ecranul principal</h4>
+    <p>La deschiderea aplicației, utilizatorul vede un ecran principal cu 6 carduri: Music, Reddit, Feed, Games, Videos, Social, plus o secțiune numită „Interactive Live View”.</p>
+    <p>Fiecare card este apăsabil. La tap, utilizatorul este redirecționat către secțiunea dedicată.</p>
+    <h4>Navigarea</h4>
+     <p>Bara de jos oferă trei butoane de navigare: </p>
+    <ul>
+      <li><strong>Videos</strong>: revine la eranul principal (home) </li>
+      <li><strong>Search</strong>: pentru accesarea funcției de căutare.</li>
+      <li><strong>Settings</strong>: accesează meniul de setări.</li>
+    </ul>
+    <h4>Secțiuni tematice</h4>
+    <p>Fiecare categorie media deschide o pagină dedicată:</p>
+    <ul>
+      <li><strong>Music</strong>: redirecționează utilizatorul către aplicația de muzică preferată (ex: Spotify).</li>
+      <li><strong>Reddit</strong>: deschide aplicația Reddit, cu feed-ul utilizatorului.</li>
+      <li><strong>Feed</strong>: oferă un feed personalizat cu conținut relevant.</li>
+      <li><strong>Games</strong>: redirecționează utilizatorul către aplicația de jocuri preferată.</li>
+      <li><strong>Videos</strong>: deschide aplicația de video preferată (ex: YouTube).</li>
+      <li><strong>Social</strong>: accesează aplicația de socializare preferată (ex: Facebook).</li>
+    </ul>
+    <h4>Interactiuni</h4>
+    <p>Utilizatorul poate interacționa cu aplicația prin tap pe carduri și butoane. În componenta MR, interacțiunea se face prin gesturi simple (air tap sau gaze).</p>
+    <h4>Modul MR (Mixed Reality)</h4>
+     <p>Cu ajutorul unei perechi de ochelari MR utilizatorul poate vedea ecranul principal proiectat în fața lui, suprapus peste mediul real.
+Utilizatorul poate naviga prin aplicație prin gesturi simple, cum ar fi air tap sau gaze. De exemplu, pentru a accesa secțiunea „Interactive Live View”, utilizatorul poate privi un buton virtual și să apese pe el cu degetul.</p>
+ De asemenea, utilizatorul poate vedea texte informative despre diferite clădiri, iar conținutul se adaptează în funcție de locație sau direcția privirii.
+     </p>
+     
+  </section>
+</section>
+
+<section id="conclusion">
+  <h2>Concluzie</h2>
+  <p>Aplicația Commutr oferă o soluție inovatoare pentru naveta zilnică, combinând accesibilitatea aplicației mobile cu interacțiunea imersivă a componentelor MR. Designul său centrat pe utilizator, cu un accent pe simplitate și claritate vizuală, face ca experiența de utilizare să fie plăcută și eficientă. Această abordare duală nu doar că îmbunătățește confortul utilizatorului, dar și transformă naveta într-o experiență mai plăcută și mai productivă.</p>
+</section>
+
+        
+  </body>
+</html>
